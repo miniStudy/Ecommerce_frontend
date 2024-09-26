@@ -1,0 +1,73 @@
+/* animation.css */
+
+  body {
+    overflow-y: visible;
+    position: relative;
+    overflow-x: hidden;
+    margin: 0; /* Ensures no margin on body */
+  }
+  
+  /* Ensure no conflicts with Bootstrap */
+  .App {
+    position: relative;
+  }
+  
+  .containerr {
+    width: 600vw !important;
+    height: 100vh !important;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .firstContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: yellow;
+  }
+  
+  .lastContainer {
+    display: flex;
+    height: 100vh;
+    background: yellow;
+  }
+  
+  .panel {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  /* Specific colors for each panel */
+  .red {
+    background: red;
+  }
+  
+  .orange {
+    background: orange;
+  }
+  
+  .purple {
+    background: purple;
+  }
+  
+  .blue {
+    background-color: blue;
+  }
+  
+  /* Scroll down styles */
+  .scroll-down {
+    /* Your scroll down arrow styles */
+  }
+  
+  .arrow {
+    /* Your arrow styles */
+  }
+  
+
+  .textt{
+    font-size: 250px;
+    position: absolute;
+    z-index: 1;
+  }
