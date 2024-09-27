@@ -36,6 +36,10 @@ import HorizontalAnim from './components/animations/horizontal_scroll.js';
 
 import OfferDetails from './components/offer_details.js';
 
+import ShowStock from './components/show_stock.js';
+
+import ShowOrder from './components/show_orders.js';
+
 function App() {
   return (
   <>    
@@ -77,6 +81,10 @@ function App() {
           <Route path="/admin/add_offer" element={<AddOffer />} />
 
           <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} />
+
+          <Route path="/admin/ShowStock/" element={<ShowStock />} />
+
+          <Route path="/admin/ShowOrder/" element={<ShowOrder />} />
 
         </Routes>
         </Layout>

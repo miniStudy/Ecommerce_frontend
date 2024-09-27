@@ -83,6 +83,22 @@ const Sidebar = () => {
 </a>
 </li>
 
+
+<li class="nav-item">
+<NavLink to={`/admin/ShowStock`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
+<i class="fa-light fa-user"></i>
+  <span>Stocks</span>
+  </NavLink>
+</li>
+
+
+<li class="nav-item">
+<NavLink to={`/admin/ShowOrder`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
+<i class="fa-light fa-user"></i>
+  <span>Orders</span>
+  </NavLink>
+</li>
+
 {/* End Dashboard Nav */}
 
 {/* <li className="nav-item">
