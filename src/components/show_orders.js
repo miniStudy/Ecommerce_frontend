@@ -186,11 +186,9 @@ const ShowOrder = () => {
                             <td>{order.Address.landmark}, {order.Address.city}, {order.Address.state}<br/>
                                 {order.Address.zipcode}<br/>
                             </td>
-                            <td>{order.order_note ? (
-                                        <span>Null</span>
-                                    ) : ( 
-                                    <span> - </span>
-                                    )}</td>
+                            <td><Link to={`/admin/Order_Details/${order.order_id}`}>
+                                <span className='btn btn-sm btn-outline-primary'> Order Detail</span>
+                              </Link></td>
                             {/* <td>
                               <Link to={`/admin/update_order/${order.order_id}`} className="btn btn-sm">
                               <i class="fa-regular fa-pen-to-square text-primary"></i>

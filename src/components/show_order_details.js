@@ -17,9 +17,9 @@ const OrderDetails = () => {
   const fetchOrderDetails = async (page = 1) => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://127.0.0.1:8000/api/show_order_details/, {
+      const response = await axios.get(`http://127.0.0.1:8000/api/show_order_details/`, {
         params: { order_id, page }
-      }`);
+      });
       const data = response.data.data; // Correctly accessing the data array
       console.log(data); // Check the structure of your data
       setOrderDetails(data || []);
