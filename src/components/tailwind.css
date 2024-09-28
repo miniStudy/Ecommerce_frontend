@@ -138,14 +138,14 @@ i {
     background-color: var(--color);
     height: 100%;
     position: fixed;
-    width: 15%;
+    width: 17%;
     margin-top: 65px;
     top: 0;
     left: 0;
 }
-.mainspacer{width: 15%;padding: 1px;}
+.mainspacer{width: 17%;padding: 1px;}
 .maincontent{
-    width: 84.5%;
+    width: 82.5%;
     margin-top: 70px;
 }
 
