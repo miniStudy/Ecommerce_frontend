@@ -97,18 +97,19 @@ const OrderDetails = () => {
       {orderDetails.length > 0 ? (
         orderDetails.map((Order, index) => (
           <div key={index} className="Order-section mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className='orderdata'>
+                <div>{}</div>
+              </div>
+              <div></div>
+            </div>
             <div className="Order-header text-center mb-4">
-              {Order.orderDet_product?.product_img1 && (
-                <img
-                  className="Order-image img-fluid w-100"
-                  src={`http://127.0.0.1:8000${Order.orderDet_product.product_img1}`}
-                  alt={Order.orderDet_product.product_name}
-                />
-              )}
+              
               <div className="table-responsive">
                 <table className="table table-bordered text-center">
                   <thead className="thead-light">
                     <tr>
+                      <th>Img</th>
                       <th>Product Name</th>
                       <th>Price</th>
                       <th>Quantity</th>
@@ -120,6 +121,13 @@ const OrderDetails = () => {
                   </thead>
                   <tbody>
                     <tr>
+                      <td>{Order.orderDet_product?.product_img1 && (
+                <img
+                  className="Order-image img-fluid w-20"
+                  src={`http://127.0.0.1:8000${Order.orderDet_product.product_img1}`}
+                  alt={Order.orderDet_product.product_name}
+                />
+              )}</td>
                       <td>{Order.orderDet_product.product_name}</td>
                       <td>{Order.orderDet_price}</td>
                       <td>{Order.orderDet_quantity}</td>
@@ -136,39 +144,6 @@ const OrderDetails = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
-            <hr />
-            <div className="row">
-              {Array.isArray(Order.products) && Order.products.length > 0 ? (
-                Order.products.map((product, idx) => (
-                  <div key={idx} className="col-md-4 col-lg-3 mb-4">
-                    <div className="card h-100">
-                      <img
-                        src={`http://127.0.0.1:8000${product.product_img1}`}
-                        className="card-img-top"
-                        alt={product.product_name}
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">{product.product_name}</h5>
-                        <p className="card-text">
-                          <strong>MRP:</strong> ₹{product.product_mrp}<br />
-                          <strong>Cost:</strong> ₹{product.product_cost}<br />
-                          <strong>Selling Price:</strong> ₹{product.product_selling_price}<br />
-                          <strong>Stock:</strong> {product.product_stock}
-                        </p>
-                        <p className="text-success">
-                          <strong>After Order Price:</strong> ₹{product.after_Order_price}
-                        </p>
-                        <button onClick={() => handleDeleteClick(product.Order_detail_id)} className="btn btn-danger btn-sm">
-                          <i className="fa fa-trash"></i> Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-center">No products available for this Order.</p>
-              )}
             </div>
           </div>
         ))
