@@ -1,0 +1,187 @@
+
+
+:root{
+    --color : #0073E6;
+    --blue200 : rgb(191 219 254);
+    --blue300 : rgb(147 197 253);
+    --blue400 : rgb(96 165 250);
+    --color2 : rgb(96 165 250);
+    --color3 :  rgb(59 130 246);
+    --blue100 : rgb(219 234 254);
+    --gray50 : rgb(249 250 251);
+    --gray100 :rgb(243 244 246);
+    --gray200 : rgb(229 231 235);
+    --gray300 : rgb(229 231 235);
+    --gray400 : rgb(209 213 219);
+    --gray500 : rgb(107 114 128);
+    --gray600 : rgb(75 85 99);
+    --gray700 : rgb(55 65 81);
+    --gray800 : rgb(31 41 55);
+    --red400 : rgb(248 113 113);
+    --shadow : rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+  
+.row{padding: 0;margin: 0;}
+
+.btn-outline-primary{
+    outline:1px solid var(--blue300);
+    border: none;
+    color: var(--blue400);
+}
+.btn-outline-primary:hover{background-color: var(--blue400);box-shadow: var(--shadow);}
+
+input{outline:1px solid var(--blue300);border: none;color: var(--blue400) !important;}
+
+.mainfontclr{color: var(--color3);}
+/* General Styles */
+body {
+    background-color: white !important;
+}
+
+.card{border: 2px solid var(--blue200);box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+.pagetitle{font-size: 25px;font-weight: 600;color: var(--color3);}
+
+.logoname {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.logoname .ss {
+    color: var(--color);
+}
+
+.badge {
+    font-size: 10px !important;
+    padding: 3px;
+}
+
+i {
+    height: 20px;
+    width: 20px;
+}
+
+/* Navbar Styles */
+.navbarr i {
+    height: 20px;
+    width: 20px;
+}
+
+.navbarr ul li {
+    padding: 5px;
+}
+
+.navbarprofilemenu li a{color: var(--gray700);}
+
+.navbarprofilemenu li:hover, .navbarprofilemenu li a:hover{
+    background-color: var(--blue100) !important;
+    color: var(--color3);
+}
+
+/* Dropdown Menu */
+.dropdown-menu h3 {
+    font-size: 1.25rem; /* Ensure proper size for headers in dropdown */
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Adjust logo size on smaller screens */
+    .logoname {
+        font-size: 24px;
+    }
+
+    /* Adjust font size for badges */
+    .badge {
+        font-size: 8px !important;
+        padding: 2px;
+    }
+
+    /* Adjust icon size for smaller screens */
+    i {
+        height: 16px;
+        width: 16px;
+    }
+
+    /* Adjust padding for navbar list items on mobile */
+    .navbarr ul li {
+        padding: 8px;
+    }
+
+    /* Stack navbar items vertically on mobile */
+    .navbarr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    
+}
+
+/* Tablet Responsive Adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Slightly adjust logo size for tablets */
+    .logoname {
+        font-size: 28px;
+    }
+
+    /* Adjust navbar padding */
+    .navbarr ul li {
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+.sidemenuu{
+    background-color: var(--color);
+    height: 100%;
+    position: fixed;
+    width: 15%;
+    margin-top: 65px;
+    top: 0;
+    left: 0;
+}
+.mainspacer{width: 15%;padding: 1px;}
+.maincontent{
+    width: 84.5%;
+    margin-top: 70px;
+}
+
+.sidemenuu ul li{
+    /* background-color: var(--color); */
+    outline: 2px solid white;
+    /* color: white; */
+    padding: 10px;
+    border-radius: 12px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    color: var(--gray700);
+
+}
+.sidemenuu ul li:hover{
+    background-color: var(--gray200);
+}
+.sidemenuul .activesidebar{
+    background-color: var(--blue100) !important;
+    color: var(--color3);
+  }
+  
+
+@media (max-width: 768px) {
+    .sidemenuu{
+    width: 70%;
+    margin-top: 0px;
+    height: 100%;
+    }
+
+    .maincontent{
+        width: 100%;
+        margin-top: 70px;
+    }
+}
+
+
+
+
+

@@ -147,17 +147,8 @@ const ShowProducts = () => {
   return (
     <>
       <main id="main" className="main">
-        <div className="pagetitle">
-          <h1>Products</h1>
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active">Products</li>
-            </ol>
-          </nav>
-        </div>
+      <h1 className='pagetitle'>Home</h1>
+      <br/>
         {successMessage && (
           <div
             className="alert alert-success alert-dismissible fade show"
@@ -177,14 +168,14 @@ const ShowProducts = () => {
           <div className="card">
             <div className="card-body">
               <div className="row d-flex flex-between">
-                <div className="col">
+                <div className="col d-flex align-items-center">
                   <Link to={`/admin/add_products`}>
                     <span className="btn btn-sm btn-outline-primary">
-                      <i className="fa-light fa-plus me-2"></i> Add Products
+                      <i className="fa-light fa-plus me-1"></i> Add Products
                     </span>
                   </Link>
                 </div>
-                <div className="col">
+                <div className="col d-flex justify-content-end">
                   <div className="d-inline-block ms-2">
                     <input
                       type="text"
@@ -198,19 +189,21 @@ const ShowProducts = () => {
                   </div>
                 </div>
               </div>
-              <hr />
-              <div className="row">
+              
+             
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                 {data.map((x) => (
-                  <div className="col-md-6" key={x.product_id}>
+                  <div className="" key={x.product_id}>
                     <div className="card">
                       <div className="card-body">
-                        <div className="row">
-                          <div className="col-md-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                          <div className="">
                             <div className="adminshopimgbox">
                               <ProductImage productImg={x.product_img1} />
                             </div>
                           </div>
-                          <div className="col-md-6">
+                          <div className="">
                             <div className="product_name mt-2">
                               <b>{x.product_name}</b>
                             </div>
@@ -284,7 +277,17 @@ const ShowProducts = () => {
                     </div>
                   </div>
                 ))}
+
+                
               </div>
+
+              <div>
+                  {loading && (
+                    <div className="d-flex justify-content-center"><div class="spinner-border text-blue-300 mt-2" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div></div>
+                  )}
+                </div>
             </div>
           </div>
         </section>

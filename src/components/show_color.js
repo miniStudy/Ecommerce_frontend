@@ -102,23 +102,14 @@ const ShowColors = () => {
   return (
     <>
       <main id="main" className="main">
-        <div className="pagetitle">
-          <h1>Colors</h1>
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active">Colors</li>
-            </ol>
-          </nav>
-        </div>
+      <h1 className='pagetitle'>Colors</h1>
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
             <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         )}
+        <br/>
 
         <section>
           <div className="card">
@@ -131,14 +122,14 @@ const ShowColors = () => {
                     </span>
                   </Link>
                 </div>
-                <div className='col'>
-                  <div className='d-inline-block ms-2'>
+                <div className="col d-flex justify-content-end">
+                  <div className="d-inline-block ms-2">
                     <input
-                      type='text'
-                      name='searchhere'
-                      id='searchhere'
-                      className='form-control'
-                      placeholder='Search'
+                      type="text"
+                      name="searchhere"
+                      id="searchhere"
+                      className="form-control"
+                      placeholder="Search"
                       value={searchTerm}
                       onChange={handleSearchChange}
                     />
@@ -148,7 +139,7 @@ const ShowColors = () => {
               <ExportButtons data={colors} />
 
               <hr />
-              <div className="table-responsive">
+              <div className="table-responsive mt-3" >
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>
                     <tr>
