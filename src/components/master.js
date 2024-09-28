@@ -31,7 +31,11 @@ import ShowOrder from './show_orders.js';
 import OrderDetails from './show_order_details.js';
 import ShowStock from './show_stock.js';
 import ShowStockManage from './show_stock_manage.js';
+<<<<<<< HEAD
 import ShowDeleveryBoy from './show_delivery_boy.js';
+=======
+import ShowUsers from './show_users.js';
+>>>>>>> 81592d476fe7483a8c8136fee8f7aa07aa80958a
 
 function Master() {
   return (
@@ -58,15 +62,15 @@ function Master() {
             <Route path="/admin/add_category" element={<AddCategory />} />
             <Route path="/admin/update_category/:categoryId/" element={<UpdateCategory />} />
 
-            <Route path="/admin/Brands" element={<Show_Brands />} />
+            <Route path="/admin/brands" element={<Show_Brands />} />
             <Route path="/admin/add_brand" element={<AddBrand />} />
             <Route path="/admin/update_brand/:brandId/" element={<UpdateBrand />} />
 
-            <Route path="/admin/Sizes" element={<Show_Sizes />} />
+            <Route path="/admin/sizes" element={<Show_Sizes />} />
             <Route path="/admin/add_size" element={<AddSize />} />
             <Route path="/admin/update_size/:sizeId/" element={<UpdateSize />} />
 
-            <Route path="/admin/Colors" element={<Show_Color />} />
+            <Route path="/admin/colors" element={<Show_Color />} />
             <Route path="/admin/add_colors" element={<AddColor />} />
             <Route path="/admin/update_color/:colorId/" element={<UpdateColors />} />
 
@@ -74,13 +78,17 @@ function Master() {
             <Route path="/admin/update_offer/:offerId/" element={<UpdateOffer />} />
             <Route path="/admin/add_offer" element={<AddOffer />} />
 
-            <Route path="/admin/Orders" element={<ShowOrder />} />
-            <Route path="/admin/Order_Details/:order_id/" element={<OrderDetails />} />
+            <Route path="/admin/orders" element={<ShowOrder />} />
+            <Route path="/admin/order_details/:order_id/" element={<OrderDetails />} />
 
-            <Route path="/admin/Stocks" element={<ShowStock />} />
+            <Route path="/admin/stocks" element={<ShowStock />} />
             <Route path="/admin/stock_management" element={<ShowStockManage />} />
 
+<<<<<<< HEAD
             <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
+=======
+            <Route path="/admin/users" element={<ShowUsers />} />
+>>>>>>> 81592d476fe7483a8c8136fee8f7aa07aa80958a
 
           {/* <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>
