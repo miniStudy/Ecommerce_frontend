@@ -27,6 +27,10 @@ import Show_Offer from './show_offers.js';
 import AddOffer from './insert/insert_offer.js';
 import UpdateOffer from './update/update_offer.js';
 import HorizontalAnim from './animations/horizontal_scroll.js';
+import ShowOrder from './show_orders.js';
+import OrderDetails from './show_order_details.js';
+import ShowStock from './show_stock.js';
+import ShowStockManage from './show_stock_manage.js';
 
 function Master() {
   return (
@@ -68,6 +72,12 @@ function Master() {
             <Route path="/admin/offers" element={<Show_Offer />} />
             <Route path="/admin/update_offer/:offerId/" element={<UpdateOffer />} />
             <Route path="/admin/add_offer" element={<AddOffer />} />
+
+            <Route path="/admin/Orders" element={<ShowOrder />} />
+            <Route path="/admin/Order_Details/:order_id/" element={<OrderDetails />} />
+
+            <Route path="/admin/Stocks" element={<ShowStock />} />
+            <Route path="/admin/stock_management" element={<ShowStockManage />} />
 
           {/* <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>

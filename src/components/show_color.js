@@ -138,7 +138,6 @@ const ShowColors = () => {
               </div>
               <ExportButtons data={colors} />
 
-              <hr />
               <div className="table-responsive mt-3" >
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>

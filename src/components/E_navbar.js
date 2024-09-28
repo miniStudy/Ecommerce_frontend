@@ -153,21 +153,28 @@ function E_navbar() {
   
 
   <NavLink
-    to="/admin/orders"
+    to="/admin/Orders"
     className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
   >
     <li><i className="fa-solid fa-truck-fast me-2"></i> Orders</li>
   </NavLink>
+
+  <NavLink
+    to="/admin/Order_Details"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i className="fa-solid fa-truck-fast me-2"></i> Orders Details</li>
+  </NavLink>
   
   <NavLink
-    to="/admin/stocks_entries"
+    to="/admin/Stocks"
     className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
   >
     <li><i className="fa-solid fa-layer-group me-2"></i> Stocks Entries</li>
   </NavLink>
 
   <NavLink
-    to="/admin/stock_managements"
+    to="/admin/stock_management"
     className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
   >
     <li><i className="fa-solid fa-cubes-stacked me-2"></i> Stock Managements</li>

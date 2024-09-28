@@ -105,23 +105,14 @@ const ShowOrder = () => {
     return (
         <>
           <main id="main" className="main">
-            <div className="pagetitle">
-              <h1>Orders</h1>
-              <nav>
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li className="breadcrumb-item active">Orders</li>
-                </ol>
-              </nav>
-            </div>
+          <h1 className='pagetitle'>Orders</h1>
             {successMessage && (
               <div className="alert alert-success alert-dismissible fade show" role="alert">
                 {successMessage}
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             )}
+            <br/>
     
             <section>
               <div className="card">
@@ -134,7 +125,7 @@ const ShowOrder = () => {
                         </span>
                       </Link>
                     </div>
-                    <div className='col'>
+                    <div className='col d-flex justify-content-end'>
                       <div className='d-inline-block ms-2'>
                         <input
                           type='text'
@@ -150,23 +141,22 @@ const ShowOrder = () => {
                   </div>
                   <ExportButtons data={orders} />
     
-                  <hr />
-                  <div className="table-responsive">
+                  <div className="table-responsive mt-3">
                     <table id="data_table1" className="table table-bordered border-primary">
                       <thead>
                         <tr>
                           {/* <th scope="col">#</th> */}
                           <th scope="col">id</th>
                           <th scope="col">Order Code</th>
-                          <th scope="col">Address</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Customer Details</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Pay Mode</th>
                           <th scope="col">Order Amount</th>
                           <th scope="col">Tax Amount</th>
                           <th scope="col">Delivery Charge</th>
-                          <th scope="col">Payment Status</th>
-                          <th scope="col">Date</th>
                           <th scope="col">Delivered Date</th>
+                          <th scope="col">Address</th>
                           <th scope="col">Order Note</th>
                           {/* <th scope="col">Edit</th> */}
                           <th scope="col">Delete</th>
@@ -178,31 +168,27 @@ const ShowOrder = () => {
                           <tr key={order.order_id}>
                             <th scope="row">{order.order_id}</th>
                             <td>{order.order_code}</td>
-                            <td>{order.Address.customer_fname},<br/>
-                                {order.Address.address_line1}, {order.Address.address_line2}, {order.Address.landmark}, {order.Address.country}, {order.Address.city}, {order.Address.state}<br/>
-                                {order.Address.zipcode}<br/>
-                                {order.Address.phone}<br/>
-                            </td>
+                            <td>{order.order_date}</td>
                             <td>{order.Customer_details.customer_name},<br/>
                                 {order.Customer_details.customer_email}
                             </td>
-                            <td>{order.order_payment_mode}</td>
-                            <td>{order.order_amount}</td>
-                            <td>{order.order_tax_amount}</td>
-                            <td>{order.order_delivery_charge}</td>
                             <td>{order.order_paid ? (
                                         <span>Paid</span>
                                     ) : ( 
                                     <span> Not Paid </span>
                                     )}
                              </td>
-                            <td>{order.order_date}</td>
+                            <td>{order.order_payment_mode}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_amount}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_tax_amount}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_delivery_charge}</td>
                             <td>{order.order_delivered_date}</td>
-                            <td>{order.order_note ? (
-                                        <span>Null</span>
-                                    ) : ( 
-                                    <span> - </span>
-                                    )}</td>
+                            <td>{order.Address.landmark}, {order.Address.city}, {order.Address.state}<br/>
+                                {order.Address.zipcode}<br/>
+                            </td>
+                            <td><Link to={`/admin/Order_Details/${order.order_id}`}>
+                                <span className='btn btn-sm btn-outline-primary'> Order Detail</span>
+                              </Link></td>
                             {/* <td>
                               <Link to={`/admin/update_order/${order.order_id}`} className="btn btn-sm">
                               <i class="fa-regular fa-pen-to-square text-primary"></i>

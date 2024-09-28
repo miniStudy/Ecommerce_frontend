@@ -104,24 +104,15 @@ const ShowStock = () => {
     return (
         <>
           <main id="main" className="main">
-            <div className="pagetitle">
-              <h1>Stocks</h1>
-              <nav>
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li className="breadcrumb-item active">Stocks</li>
-                </ol>
-              </nav>
-            </div>
+          <h1 className='pagetitle'>Stock Entries</h1>
             {successMessage && (
               <div className="alert alert-success alert-dismissible fade show" role="alert">
                 {successMessage}
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             )}
-    
+            <br/>
+
             <section>
               <div className="card">
                 <div className="card-body">
@@ -133,7 +124,7 @@ const ShowStock = () => {
                         </span>
                       </Link>
                     </div>
-                    <div className='col'>
+                    <div className='col d-flex justify-content-end'>
                       <div className='d-inline-block ms-2'>
                         <input
                           type='text'
@@ -149,8 +140,8 @@ const ShowStock = () => {
                   </div>
                   <ExportButtons data={stocks} />
     
-                  <hr />
-                  <div className="table-responsive">
+                
+                  <div className="table-responsive mt-3">
                     <table id="data_table1" className="table table-bordered border-primary">
                       <thead>
                         <tr>

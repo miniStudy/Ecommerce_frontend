@@ -147,7 +147,7 @@ const ShowProducts = () => {
   return (
     <>
       <main id="main" className="main">
-      <h1 className='pagetitle'>Home</h1>
+      <h1 className='pagetitle'>Products</h1>
       <br/>
         {successMessage && (
           <div
