@@ -36,6 +36,10 @@ import HorizontalAnim from './components/animations/horizontal_scroll.js';
 
 import OfferDetails from './components/offer_details.js';
 
+import StockManage from './components/show_stock_manage.js';
+
+import OrderDetails from './components/order_details.js';
+
 function App() {
   return (
   <>    
@@ -60,15 +64,15 @@ function App() {
           <Route path="/admin/add_category" element={<AddCategory />} />
           <Route path="/admin/update_category/:categoryId/" element={<UpdateCategory />} />
 
-          <Route path="/admin/Brands" element={<Show_Brands />} />
+          <Route path="/admin/brands" element={<Show_Brands />} />
           <Route path="/admin/add_brand" element={<AddBrand />} />
           <Route path="/admin/update_brand/:brandId/" element={<UpdateBrand />} />
 
-          <Route path="/admin/Sizes" element={<Show_Sizes />} />
+          <Route path="/admin/sizes" element={<Show_Sizes />} />
           <Route path="/admin/add_size" element={<AddSize />} />
           <Route path="/admin/update_size/:sizeId/" element={<UpdateSize />} />
 
-          <Route path="/admin/Colors" element={<Show_Color />} />
+          <Route path="/admin/colors" element={<Show_Color />} />
           <Route path="/admin/add_colors" element={<AddColor />} />
           <Route path="/admin/update_color/:colorId/" element={<UpdateColors />} />
 
@@ -78,13 +82,13 @@ function App() {
 
           <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} />
 
+          <Route path="/admin/stock_manage" element={<StockManage />} />
+
+          <Route path="/admin/order_details/:order_id/" element={<OrderDetails />} />
         </Routes>
         </Layout>
         </Router>
-       
   </>
-   
   );
 }
-
 export default App;

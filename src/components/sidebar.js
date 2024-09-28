@@ -61,7 +61,7 @@ const Sidebar = () => {
 
 
 <li class="nav-item">
-<NavLink to={`/admin/Brands`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
+<NavLink to={`/admin/brands`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
 <i class="fa-light fa-calendar-heart"></i>
   <span>Brands</span>
   </NavLink>
@@ -69,18 +69,25 @@ const Sidebar = () => {
 
 
 <li class="nav-item">
-<a class="nav-link collapsed" href="users-profile.html">
+<NavLink to={`/admin/sizes`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
 <i class="fa-light fa-arrow-up-big-small"></i>
   <span>Size</span>
-</a>
+  </NavLink>
 </li>
 
 
 <li class="nav-item">
-<a class="nav-link collapsed" href="users-profile.html">
+<NavLink to={`/admin/colors`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
 <i class="fa-light fa-droplet"></i>
   <span>Colour</span>
-</a>
+  </NavLink>
+</li>
+
+<li class="nav-item">
+<NavLink to={`/admin/stock_manage`} className={({ isActive }) => (isActive ? 'nav-link' : 'nav-link collapsed')}>
+<i class="fa-light fa-calendar-heart"></i>
+  <span>Stock Management</span>
+  </NavLink>
 </li>
 
 {/* End Dashboard Nav */}
