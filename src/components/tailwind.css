@@ -38,6 +38,9 @@ body {
     background-color: white !important;
     cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
 }
+
+table{font-size: 14px;}
+
 a:hover{
     cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
 }
