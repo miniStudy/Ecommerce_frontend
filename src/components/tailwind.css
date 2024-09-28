@@ -162,7 +162,7 @@ i {
     border-radius: 12px;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     color: var(--gray700);
-
+    font-size: 14px;
 }
 .sidemenuu ul li:hover{
     background-color: var(--gray200);
