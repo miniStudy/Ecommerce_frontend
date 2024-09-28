@@ -79,17 +79,7 @@ const OrderDetails = () => {
 
   return (
     <main id="main" className="main container">
-      <div className="pagetitle">
-        <h1>Order Details</h1>
-        <nav>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item active">Orders</li>
-            <li className="breadcrumb-item active">Order Details</li>
-          </ol>
-        </nav>
-      </div>
-
+      <h1 className='pagetitle'>Order Details</h1>
       {successMessage && (
         <div className="alert alert-success alert-dismissible fade show" role="alert">
           {successMessage}
@@ -119,24 +109,29 @@ const OrderDetails = () => {
                 <table className="table table-bordered text-center">
                   <thead className="thead-light">
                     <tr>
-                      <th>Order Name</th>
-                      <th>Discount</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Status</th>
+                      <th>Product Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Size</th>
+                      <th>Color</th>
+                      <th>Order Status</th>
+                      <th>Customer Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>{Order.orderDet_product.product_name}</td>
-                      <td>{Order.Order_discount || 0}%</td>
-                      <td>{Order.Order_starting_date}</td>
-                      <td>{Order.Order_ending_date}</td>
-                      <td>
+                      <td>{Order.orderDet_price}</td>
+                      <td>{Order.orderDet_quantity}</td>
+                      <td>{Order.orderDet_product.product_size}</td>
+                      <td>{Order.orderDet_product.product_color}</td>
+                      <td>{Order.orderDet_status}</td>
+                      <td>{Order.orderDet_customer.customer_name}</td>
+                      {/* <td>
                         <span className={Order.Order_expired ? 'text-danger' : 'text-success'}>
                           {Order.Order_expired ? 'Expired' : 'Active'}
                         </span>
-                      </td>
+                      </td> */}
                     </tr>
                   </tbody>
                 </table>
