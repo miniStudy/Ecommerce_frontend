@@ -179,9 +179,9 @@ const ShowOrder = () => {
                                     )}
                              </td>
                             <td>{order.order_payment_mode}</td>
-                            <td>{order.order_amount}</td>
-                            <td>{order.order_tax_amount}</td>
-                            <td>{order.order_delivery_charge}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_amount}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_tax_amount}</td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_delivery_charge}</td>
                             <td>{order.order_delivered_date}</td>
                             <td>{order.Address.landmark}, {order.Address.city}, {order.Address.state}<br/>
                                 {order.Address.zipcode}<br/>

@@ -102,23 +102,14 @@ const ShowSizes = () => {
   return (
     <>
       <main id="main" className="main">
-        <div className="pagetitle">
-          <h1>Sizes</h1>
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active">Sizes</li>
-            </ol>
-          </nav>
-        </div>
-        {successMessage && (
-          <div className="alert alert-success alert-dismissible fade show" role="alert">
-            {successMessage}
-            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        )}
+          <h1 className='pagetitle'>Sizes</h1>
+            {successMessage && (
+              <div className="alert alert-success alert-dismissible fade show" role="alert">
+                {successMessage}
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            )}
+            <br/>
 
         <section>
           <div className="card">
@@ -131,7 +122,7 @@ const ShowSizes = () => {
                     </span>
                   </Link>
                 </div>
-                <div className='col'>
+                <div className='col d-flex justify-content-end'>
                   <div className='d-inline-block ms-2'>
                     <input
                       type='text'
@@ -147,8 +138,7 @@ const ShowSizes = () => {
               </div>
               <ExportButtons data={sizes} />
 
-              <hr />
-              <div className="table-responsive">
+              <div className="table-responsive mt-3">
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>
                     <tr>
