@@ -150,12 +150,7 @@ function E_navbar() {
     <li><i className="fa-solid fa-palette me-2"></i> Colors</li>
   </NavLink>
 
-  <NavLink
-    to="/admin/users"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-regular fa-user me-2"></i> Users</li>
-  </NavLink>
+  
 
   <NavLink
     to="/admin/orders"
@@ -178,12 +173,54 @@ function E_navbar() {
     <li><i className="fa-solid fa-cubes-stacked me-2"></i> Stock Managements</li>
   </NavLink>
 
+  
+
+  <NavLink
+    to="/admin/delivery_boys"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i class="fa-regular fa-square-check me-2"></i> Products Availablity</li>
+  </NavLink>
+  <hr/>
+  <div className='text-small text-gray-400 rounded-sm'>Users</div>
+  <NavLink
+    to="/admin/users"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i className="fa-regular fa-user me-2"></i> Users</li>
+  </NavLink>
+
+  <NavLink
+    to="/admin/delivery_boys"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i class="fa-solid fa-user-tie me-2"></i> Admin</li>
+  </NavLink>
+
   <NavLink
     to="/admin/delivery_boys"
     className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
   >
     <li><i className="fa-solid fa-truck me-2"></i> Delivery Boys</li>
   </NavLink>
+
+ <hr/>
+ <div className='text-small text-gray-400 rounded-sm'>Authentication</div>
+ <NavLink
+    to="/admin/delivery_boys"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i className="fa-solid fa-truck me-2"></i>Change Password</li>
+  </NavLink>
+
+  <NavLink
+    to="/admin/delivery_boys"
+    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
+  >
+    <li><i className="fa-solid fa-truck me-2"></i>Delete Account</li>
+  </NavLink> 
+  
+
 </ul>
 
         </div>

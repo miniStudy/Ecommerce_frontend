@@ -36,6 +36,10 @@ input{outline:1px solid var(--blue300);border: none;color: var(--blue400) !impor
 /* General Styles */
 body {
     background-color: white !important;
+    cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
+}
+a:hover{
+    cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
 }
 
 .card{border: 2px solid var(--blue200);box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
@@ -142,6 +146,7 @@ i {
     margin-top: 65px;
     top: 0;
     left: 0;
+    overflow: auto;
 }
 .mainspacer{width: 15%;padding: 1px;}
 .maincontent{
@@ -183,5 +188,31 @@ i {
 
 
 
+
+
+
+
+
+
+
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width */
+  }
+  
+  /* Track (the background of the scrollbar) */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track background color */
+  }
+  
+  /* Handle (the actual scroll part) */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--blue200); /* Scrollbar color */
+    border-radius: 10px;       /* Rounded corners */
+    border: 3px solid #f1f1f1; /* Adds some padding between the thumb and track */
+  }
+  
+  
 
 
