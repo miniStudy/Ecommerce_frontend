@@ -128,97 +128,61 @@ function E_navbar() {
   </Link>
 
   
-  <NavLink
-    to="/admin/brands"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-regular fa-building me-2"></i> Brands</li>
-  </NavLink>
+  <Link to="/admin/brands">
+    <li className={isActive('/admin/brands')}><i className="fa-regular fa-building me-2"></i> Brands</li>
+  </Link>
 
-  <NavLink
-    to="/admin/sizes"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-expand me-2"></i> Sizes</li>
-  </NavLink>
+  <Link to="/admin/sizes">
+    <li className={isActive('/admin/sizes')}><i className="fa-solid fa-expand me-2"></i> Sizes</li>
+  </Link>
   
-  <NavLink
-    to="/admin/colors"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-palette me-2"></i> Colors</li>
-  </NavLink>
+  <Link to="/admin/colors">
+    <li className={isActive('/admin/colors')}><i className="fa-solid fa-palette me-2"></i> Colors</li>
+  </Link>
 
   
 
-  <NavLink
-    to="/admin/Orders"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-truck-fast me-2"></i> Orders</li>
-  </NavLink>
+  <Link to="/admin/Orders">
+    <li className={isActive('/admin/Orders')}><i className="fa-solid fa-truck-fast me-2"></i> Orders</li>
+  </Link>
   
-  <NavLink
-    to="/admin/Stocks"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-layer-group me-2"></i> Stocks Entries</li>
-  </NavLink>
+  <Link to="/admin/Stocks">
+    <li className={isActive('/admin/Stocks')}><i className="fa-solid fa-layer-group me-2"></i> Stocks Entries</li>
+  </Link>
 
-  <NavLink
-    to="/admin/stock_management"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-cubes-stacked me-2"></i> Stock Managements</li>
-  </NavLink>
+  <Link to="/admin/stock_management">
+    <li className={isActive('/admin/stock_management')}><i className="fa-solid fa-cubes-stacked me-2"></i> Stock Managements</li>
+  </Link>
 
   
 
-  <NavLink
-    to="/admin/availability"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i class="fa-regular fa-square-check me-2"></i> Products Availablity</li>
-  </NavLink>
+  <Link to="/admin/availability">
+    <li className={isActive('/admin/availability')}><i class="fa-regular fa-square-check me-2"></i> Products Availablity</li>
+  </Link>
 
   <hr/>
   <div className='text-small text-gray-400 rounded-sm'>Users</div>
-  <NavLink
-    to="/admin/users"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-regular fa-user me-2"></i> Users</li>
-  </NavLink>
+  <Link to="/admin/users">
+    <li className={isActive('/admin/users')}><i className="fa-regular fa-user me-2"></i> Users</li>
+  </Link>
 
-  <NavLink
-    to="/admin/delivery_boys"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i class="fa-solid fa-user-tie me-2"></i> Admin</li>
-  </NavLink>
+  <Link to="/admin/delivery_boys">
+    <li className={isActive('/admin/delivery_boys')}><i class="fa-solid fa-user-tie me-2"></i> Admin</li>
+  </Link>
 
-  <NavLink
-    to="/admin/delivery_boys"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-truck me-2"></i> Delivery Boys</li>
-  </NavLink>
+  <Link to="/admin/delivery_boys">
+    <li className={isActive('/admin/delivery_boys')}><i className="fa-solid fa-truck me-2"></i> Delivery Boys</li>
+  </Link>
 
  <hr/>
  <div className='text-small text-gray-400 rounded-sm'>Authentication</div>
- <NavLink
-    to="/admin/delivery_boys"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-truck me-2"></i>Change Password</li>
-  </NavLink>
+ <Link to="/admin/delivery_boys">
+    <li className={isActive('/admin/delivery_boys')}><i className="fa-solid fa-truck me-2"></i>Change Password</li>
+  </Link>
 
-  <NavLink
-    to="/admin/delivery_boys"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-truck me-2"></i>Delete Account</li>
-  </NavLink> 
+  <Link to="/admin/delivery_boys">
+    <li className={isActive('/admin/delivery_boys')}><i className="fa-solid fa-truck me-2"></i>Delete Account</li>
+  </Link> 
   
 
 </ul>
