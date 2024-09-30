@@ -66,39 +66,45 @@ const ShowOrder = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [hasMore, loading]);
 
-    const handleDeleteClick = (orderId) => {
-        setDeleteOrderId(orderId);
-        setShowModal(true);
-    };
-
-    const handleDeleteConfirm = () => {
-        axios
-        .delete(`http://127.0.0.1:8000/api/show_order/?pk=${deleteOrderId}`)
-        .then((response) => {
-            setSuccessMessage(response.data.message);
-            setShowModal(false);
-            setDeleteOrderId(null);
-            setOrders([]); // Clear existing order before re-fetching
-            setPage(1); // Reset page to 1
-            fetchOrders(searchTerm, 1); // Reload order after successful deletion
-        })
-        .catch((error) => {
-            console.error('Error deleting order:', error);
-        });
-    };
-
-
-    const handleModalClose = () => {
-        setShowModal(false);
-        setDeleteOrderId(null);
-    };
-
     const handleSearchChange = (e) => {
         const searchValue = e.target.value;
         setSearchTerm(searchValue);
         setOrders([]); // Clear previous results before fetching new ones
         setPage(1); // Reset to the first page for new search
         setHasMore(true); // Enable infinite scroll for new search
+    };
+
+
+    const handleAccept = (orderdet_id) => {
+      console.log(`Accepted product with ID: ${orderdet_id}`);
+      // Add your logic for accepting the product here
+      axios.get(`http://127.0.0.1:8000/api/change_order_status/?orderDet_id=${orderdet_id}&orderDet_status=ACCEPTED`)
+      .then((response) => {
+        if (response.data.status) {
+          setSuccessMessage(response.data.message);
+          setOrders([]);
+          fetchOrders(searchTerm, 1);
+          
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating color:', error);
+      });
+      
+    };
+    
+    const handleReject = (orderdet_id) => {
+      console.log(`Rejected product with ID: ${orderdet_id}`);
+      // Add your logic for rejecting the product here
+      axios.get(`http://127.0.0.1:8000/api/change_order_status/?orderDet_id=${orderdet_id}&orderDet_status=Rejected`)
+      .then((response) => {
+        if (response.data.status) {
+          setSuccessMessage('Order is Rejected successfully');
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating color:', error);
+      });
     };
 
 
@@ -115,18 +121,28 @@ const ShowOrder = () => {
             <br/>
 
             <section className='mb-3'>
+            {orders.map((order) => (
               <div className='grid grid-cols-1 md:grid-cols-4 gap-3 p-2 mb-4 card'>
+
                 <div className='md:col-span-1 p-2'>
-                  Order Code : 1234<br/>
-                  Date : abcd<br/>
-                  User : Trushal Patel, mail.trushalpatel@gmail.com<br/>
-                  Gota, Ahmedabad, Gujarat, 380021
+                  Order Code : {order.order_code}<br/>
+                  Date : {order.order_date}<br/>
+                  User : {order.Customer_details.customer_name},<br/>
+                  {order.Customer_details.customer_email}<br/>
+                  {order.Address.landmark}, {order.Address.city}, {order.Address.state}, {order.Address.zipcode}
                 </div>
                 <div className='md:col-span-1 p-2'>
-                <div>Payment Mode : UPI <span className='bg-red-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>Paid</span></div>
-                  Tax : 100, Delivery Charge : 100<br/>
-                  Order Total : 4500<br/>
-                  Delivery Date : 01-01-2024<br/>
+                <div>Payment Mode : {order.order_payment_mode} {order.order_paid ? (
+                                        <span className='bg-green-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>Paid</span>
+                                    ) : ( 
+                                      <span className='bg-red-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>UnPaid</span>
+                                    )}</div>
+                  Tax : {order.order_tax_amount}, Delivery Charge : {order.order_delivery_charge}<br/>
+                  Order Total : {order.order_amount}<br/>
+                  Delivery Date : {order.order_delivered_date}<br/>
+                  Order Detail : <Link to={`/admin/Order_Details/${order.order_id}`}>
+                                <span className='text-blue-500 underline'> View</span>
+                              </Link>
                 </div>
 
                 <div className='col-span-2 p-2'>
@@ -136,141 +152,42 @@ const ShowOrder = () => {
                         <tr>
                           <th scope="col">Product Name</th>
                           <th scope="col">Qty</th>
-                          <th scope="col">Accept</th>
-                          <th scope="col">Reject</th>
+                          <th scope="col" className="text-center">Status</th>
                         </tr>
                       </thead>
                       <tbody>
+                        {order.order_product.map((product)=>(
                         <tr>
-                        <td>Product Name</td>
-                        <td>20</td>
-                        <td>accept</td>
-                        <td>reject</td>
+                        <td>{product.product_name}</td>
+                        <td>{product.orderDet_quantity}</td>
+                        <td className="text-center">
+                        {product.product_status === "Pending" ? (
+                          <>
+                            <button 
+                              className="btn btn-sm btn-success me-4"  
+                              onClick={() => handleAccept(product.orderdet_id)}>
+                              Accept
+                            </button>
+                            <button 
+                              className="btn btn-sm btn-danger" 
+                              onClick={() => handleReject(product.orderdet_id)}>
+                              Reject
+                            </button>
+                          </>
+                        ) : (
+                          <span>{product.product_status}</span>  // Display status if not pending
+                        )}
+                        </td>
                         </tr>
+                        ))}
                       </tbody>
 
                     </table>
                   </div>
                 </div>
               </div>
+            ))}
             </section>
-            <section>
-              <div className="card">
-                <div className="card-body">
-                  <div className='row d-flex flex-between'>
-                    <div className='col'>
-                      <Link to={`/admin/add_order`}>
-                        <span className='btn btn-sm btn-outline-primary'>
-                          <i className="fa-light fa-plus me-2"></i> Add order
-                        </span>
-                      </Link>
-                    </div>
-                    <div className='col d-flex justify-content-end'>
-                      <div className='d-inline-block ms-2'>
-                        <input
-                          type='text'
-                          name='searchhere'
-                          id='searchhere'
-                          className='form-control'
-                          placeholder='Search'
-                          value={searchTerm}
-                          onChange={handleSearchChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <ExportButtons data={orders} />
-    
-                  <div className="table-responsive mt-3">
-                    <table id="data_table1" className="table table-bordered border-primary">
-                      <thead>
-                        <tr>
-                          {/* <th scope="col">#</th> */}
-                          <th scope="col">id</th>
-                          <th scope="col">Order Code</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">Customer Details</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Pay Mode</th>
-                          <th scope="col">Order Amount</th>
-                          <th scope="col">Tax Amount</th>
-                          <th scope="col">Delivery Charge</th>
-                          <th scope="col">Delivered Date</th>
-                          <th scope="col">Address</th>
-                          <th scope="col">Order Note</th>
-                          {/* <th scope="col">Edit</th> */}
-                          <th scope="col">Delete</th>
-                        </tr>
-                      </thead>
-                        
-                      <tbody>
-                        {orders.map((order) => (
-                          <tr key={order.order_id}>
-                            <th scope="row">{order.order_id}</th>
-                            <td>{order.order_code}</td>
-                            <td>{order.order_date}</td>
-                            <td>{order.Customer_details.customer_name},<br/>
-                                {order.Customer_details.customer_email}
-                            </td>
-                            <td>{order.order_paid ? (
-                                        <span>Paid</span>
-                                    ) : ( 
-                                    <span> Not Paid </span>
-                                    )}
-                             </td>
-                            <td>{order.order_payment_mode}</td>
-                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_amount}</td>
-                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_tax_amount}</td>
-                            <td><i class="fa-solid fa-indian-rupee-sign"></i>{order.order_delivery_charge}</td>
-                            <td>{order.order_delivered_date}</td>
-                            <td>{order.Address.landmark}, {order.Address.city}, {order.Address.state}<br/>
-                                {order.Address.zipcode}<br/>
-                            </td>
-                            <td><Link to={`/admin/Order_Details/${order.order_id}`}>
-                                <span className='btn btn-sm btn-outline-primary'> Order Detail</span>
-                              </Link></td>
-                            {/* <td>
-                              <Link to={`/admin/update_order/${order.order_id}`} className="btn btn-sm">
-                              <i class="fa-regular fa-pen-to-square text-primary"></i>
-                              </Link>
-                            </td> */}
-                            <td>
-                              <div onClick={() => handleDeleteClick(order.order_id)} className="btn btn-sm">
-                              <i class="fa-regular fa-trash text-danger"></i>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    
-                    </table>
-                  </div>
-                  {loading ? (      
-                        <div>Loading...</div> // Show loading message
-                        ) : error ? (
-                        <div>{error.message || 'Something went wrong!'}</div> // Show error message
-                        ) : (
-                            <div></div>
-                        )}
-                </div>
-              </div>
-            </section>
-    
-            {/* Delete Confirmation Modal */}
-            <Modal show={showModal} onHide={handleModalClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Confirm Deletion</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Are you sure you want to delete this order?</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleModalClose}>
-                  Cancel
-                </Button>
-                <Button variant="danger" onClick={handleDeleteConfirm}>
-                  Delete
-                </Button>
-              </Modal.Footer>
-            </Modal>
           </main>
         </>
       );
