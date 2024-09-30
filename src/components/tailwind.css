@@ -20,8 +20,10 @@
     --red400 : rgb(248 113 113);
     --shadow : rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-  
-.row{padding: 0;margin: 0;}
+
+hr{border: none;border-top:2px solid var(--blue400)}
+
+.row,.col{padding: 0;margin: 0;}
 
 .btn-outline-primary{
     outline:1px solid var(--blue300);
@@ -32,21 +34,21 @@
 
 input{outline:1px solid var(--blue300);border: none;color: var(--blue400) !important;}
 
-.mainfontclr{color: var(--color3);}
+.mainfontclr{color: var(--blue400);}
 /* General Styles */
 body {
     background-color: white !important;
-    cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
+    cursor: url('defaultimgs/Cursor.png') , auto;
 }
 
 table{font-size: 14px;}
 
 a:hover{
-    cursor: url('defaultimgs/icons8-cursor-48.png') , auto;
+    cursor: url('defaultimgs/Cursor.png') , auto;
 }
 
 .card{border: 2px solid var(--blue200);box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
-.pagetitle{font-size: 25px;font-weight: 600;color: var(--color3);}
+.pagetitle{font-size: 25px;font-weight: 600;color: var(--blue400);}
 
 .logoname {
     font-size: 30px;
@@ -88,6 +90,12 @@ i {
 .dropdown-menu h3 {
     font-size: 1.25rem; /* Ensure proper size for headers in dropdown */
 }
+
+
+.productlist{
+    font-size: 14px;
+}
+.productlist b{color: var(--gray600);}
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
@@ -135,8 +143,6 @@ i {
         padding: 10px;
     }
 }
-
-
 
 
 
@@ -217,3 +223,27 @@ i {
   }
   
   
+
+
+
+  .apexcharts-tooltip {
+    border: 1px solid white; /* White border */
+    border-radius: 5px; /* Rounded corners */
+   
+}
+
+/* Style for tooltip title (if applicable) */
+.apexcharts-tooltip .apexcharts-tooltip-title {
+    font-weight: normal; /* Bold title */
+    margin-bottom: 3px; /* Spacing below the title */
+}
+
+/* Optional: Change tooltip on hover */
+.apexcharts-tooltip:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+    background-color: white;
+}
+
+
+.filtersforproducts{font-size: 14px;}
+

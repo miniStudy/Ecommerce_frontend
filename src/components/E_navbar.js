@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import defaultimg from './defaultimgs/default_img.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 function E_navbar() {
     const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
 
+  const location = useLocation();  
   const toggleOffcanvas = () => {
     setIsOffcanvasOpen(!isOffcanvasOpen);
   };
@@ -13,6 +14,8 @@ function E_navbar() {
   const closeOffcanvas = () => {
     setIsOffcanvasOpen(false);
   };
+
+  const isActive = (path) => location.pathname === path ? 'activesidebar' : 'nav-link collapsed';
 
   return (
     <>
@@ -115,19 +118,15 @@ function E_navbar() {
           <hr/>
 
           <ul className='p-4 space-y-2 sidemenuul'>
-  <NavLink
-    to="/admin/home"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li className='activesidebar'><i className="fa-solid fa-house me-2"></i> Home</li>
-  </NavLink>
   
-  <NavLink
-    to="/admin/show_products/"
-    className={({ isActive }) => (isActive ? 'activesidebar' : 'nav-link collapsed')}
-  >
-    <li><i className="fa-solid fa-cubes me-2"></i> Products</li>
-  </NavLink>
+  <Link to="/admin/home">
+    <li className={isActive('/admin/home')}><i className="fa-solid fa-house me-2"></i> Home</li>
+  </Link>
+
+  <Link to="/admin/show_products/">
+    <li className={isActive('/admin/show_products/')}><i className="fa-solid fa-cubes me-2"></i> Products</li>
+  </Link>
+
   
   <NavLink
     to="/admin/brands"

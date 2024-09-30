@@ -113,7 +113,32 @@ const ShowOrder = () => {
               </div>
             )}
             <br/>
-    
+
+            <section className='mb-3'>
+              <div className='grid grid-cols-1 md:grid-cols-4 gap-3 p-2 mb-4 card'>
+                <div className='md:col-span-1 p-2'>
+                  Order Code : 1234<br/>
+                  Date : abcd<br/>
+                  User : Trushal Patel, mail.trushalpatel@gmail.com<br/>
+                  Gota, Ahmedabad, Gujarat, 380021
+                </div>
+                <div className='md:col-span-1 p-2'>
+                <div>Payment Mode : UPI <span className='bg-green-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>Paid</span></div>
+                  Tax : 100, Delivery Charge : 100<br/>
+                  Order Total : 4500<br/>
+                  Delivery Date : 01-01-2024<br/>
+                </div>
+
+                <div className='col-span-2 p-2'>
+                Payment Mode : UPI 
+                  Tax : 100, Delivery Charge : 100<br/>
+                  Order Total : 4500<br/>
+                  Delivery Date : 01-01-2024<br/>
+                </div>
+              </div>
+
+              
+            </section>
             <section>
               <div className="card">
                 <div className="card-body">
