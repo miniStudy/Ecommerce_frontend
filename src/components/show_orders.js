@@ -17,10 +17,10 @@ const ShowOrder = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [hasMore, setHasMore] = useState(true);
 
-
+const abc = '';
       // Fetch customer data from the API based on the search term and page number
     const fetchOrders = (search = '', pageNumber = 1) => {
-        let apiUrl = `http://127.0.0.1:8000/api/show_order/?page=${pageNumber}`;
+        let apiUrl = `http://127.0.0.1:8000/api/show_order/?page=${pageNumber}&${abc}=Accepted`;
         if (search) {
         apiUrl += `&searchhere=${search}`;
         }
