@@ -123,21 +123,36 @@ const ShowOrder = () => {
                   Gota, Ahmedabad, Gujarat, 380021
                 </div>
                 <div className='md:col-span-1 p-2'>
-                <div>Payment Mode : UPI <span className='bg-green-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>Paid</span></div>
+                <div>Payment Mode : UPI <span className='bg-red-600 d-inline-block p-1 text-white text-xs rounded-3 ms-2'>Paid</span></div>
                   Tax : 100, Delivery Charge : 100<br/>
                   Order Total : 4500<br/>
                   Delivery Date : 01-01-2024<br/>
                 </div>
 
                 <div className='col-span-2 p-2'>
-                Payment Mode : UPI 
-                  Tax : 100, Delivery Charge : 100<br/>
-                  Order Total : 4500<br/>
-                  Delivery Date : 01-01-2024<br/>
+                  <div className='table-responsive'>
+                    <table className='table table-bordered'>
+                      <thead>
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th scope="col">Qty</th>
+                          <th scope="col">Accept</th>
+                          <th scope="col">Reject</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        <td>Product Name</td>
+                        <td>20</td>
+                        <td>accept</td>
+                        <td>reject</td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
                 </div>
               </div>
-
-              
             </section>
             <section>
               <div className="card">
