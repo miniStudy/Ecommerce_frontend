@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import defaultimg from './defaultimgs/default_img.png';
 import E_navbar from './E_navbar';
-
 import ShowCustomer from './show_customers';
 import AddCustomer from './add_customer';
 import UpdateCustomer from './update_customer';
@@ -38,7 +37,6 @@ import ShowAvailability from './show_product_availability.js';
 
 function Master() {
   return (
-    <Router>
       <>
         <E_navbar />
         
@@ -47,56 +45,55 @@ function Master() {
           <div className='mainspacer'></div>
           <div className='maincontent'>
             <Routes>
-            <Route path="/admin/" element={<Home />} />
-            <Route path="/admin/home" element={<Home />} />
-            <Route path="/admin/show_customer" element={<ShowCustomer />} />
-            <Route path="/admin/add_customer" element={<AddCustomer />} />
-            <Route path="/admin/update_customer/:customerId" element={<UpdateCustomer />} />
-            <Route path='/admin/product_details/:product_id' element={<ProductDetails />} />
-            <Route path="/admin/show_products" element={<ShowProducts />} />
-            <Route path="/admin/add_products" element={<AddProduct />} />
-            <Route path="/admin/update_products/:product_id" element={<UpdateProduct />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/show_customer" element={<ShowCustomer />} />
+            <Route path="/add_customer" element={<AddCustomer />} />
+            <Route path="/update_customer/:customerId" element={<UpdateCustomer />} />
+            <Route path='/product_details/:product_id' element={<ProductDetails />} />
+            <Route path="/show_products" element={<ShowProducts />} />
+            <Route path="/add_products" element={<AddProduct />} />
+            <Route path="/update_products/:product_id" element={<UpdateProduct />} />
 
-            <Route path="/admin/show_category" element={<ShowCategory />} />
-            <Route path="/admin/add_category" element={<AddCategory />} />
-            <Route path="/admin/update_category/:categoryId/" element={<UpdateCategory />} />
+            <Route path="/show_category" element={<ShowCategory />} />
+            <Route path="/add_category" element={<AddCategory />} />
+            <Route path="/update_category/:categoryId/" element={<UpdateCategory />} />
 
-            <Route path="/admin/brands" element={<Show_Brands />} />
-            <Route path="/admin/add_brand" element={<AddBrand />} />
-            <Route path="/admin/update_brand/:brandId/" element={<UpdateBrand />} />
+            <Route path="/brands" element={<Show_Brands />} />
+            <Route path="/add_brand" element={<AddBrand />} />
+            <Route path="/update_brand/:brandId/" element={<UpdateBrand />} />
 
-            <Route path="/admin/sizes" element={<Show_Sizes />} />
-            <Route path="/admin/add_size" element={<AddSize />} />
-            <Route path="/admin/update_size/:sizeId/" element={<UpdateSize />} />
+            <Route path="/sizes" element={<Show_Sizes />} />
+            <Route path="/add_size" element={<AddSize />} />
+            <Route path="/update_size/:sizeId/" element={<UpdateSize />} />
 
-            <Route path="/admin/colors" element={<Show_Color />} />
-            <Route path="/admin/add_colors" element={<AddColor />} />
-            <Route path="/admin/update_color/:colorId/" element={<UpdateColors />} />
+            <Route path="/colors" element={<Show_Color />} />
+            <Route path="/add_colors" element={<AddColor />} />
+            <Route path="/update_color/:colorId/" element={<UpdateColors />} />
 
-            <Route path="/admin/offers" element={<Show_Offer />} />
-            <Route path="/admin/update_offer/:offerId/" element={<UpdateOffer />} />
-            <Route path="/admin/add_offer" element={<AddOffer />} />
+            <Route path="/offers" element={<Show_Offer />} />
+            <Route path="/update_offer/:offerId/" element={<UpdateOffer />} />
+            <Route path="/add_offer" element={<AddOffer />} />
 
-            <Route path="/admin/orders" element={<ShowOrder />} />
-            <Route path="/admin/order_details/:order_id/" element={<OrderDetails />} />
+            <Route path="/orders" element={<ShowOrder />} />
+            <Route path="/order_details/:order_id/" element={<OrderDetails />} />
 
-            <Route path="/admin/stocks" element={<ShowStock />} />
-            <Route path="/admin/stock_management" element={<ShowStockManage />} />
+            <Route path="/stocks" element={<ShowStock />} />
+            <Route path="/stock_management" element={<ShowStockManage />} />
 
-            <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
-            <Route path="/admin/users" element={<ShowUsers />} />
-            <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
+            <Route path="/delivery_boys" element={<ShowDeleveryBoy />} />
+            <Route path="/users" element={<ShowUsers />} />
+            <Route path="/delivery_boys" element={<ShowDeleveryBoy />} />
 
-            <Route path="/admin/users" element={<ShowUsers />} />
-            <Route path="/admin/update_user/:userId/" element={<UpdateUser />} />
+            <Route path="/users" element={<ShowUsers />} />
+            <Route path="/update_user/:userId/" element={<UpdateUser />} />
 
-            <Route path="/admin/availability" element={<ShowAvailability />} />
-          {/* <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} /> */}
+            <Route path="/availability" element={<ShowAvailability />} />
+          {/* <Route path="/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>
           </div>
         </div>
       </>
-    </Router>
   );
 }
 
