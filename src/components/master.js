@@ -33,12 +33,8 @@ import ShowStock from './show_stock.js';
 import ShowStockManage from './show_stock_manage.js';
 import ShowDeleveryBoy from './show_delivery_boy.js';
 import ShowUsers from './show_users.js';
-<<<<<<< HEAD
-
-=======
 import UpdateUser from './update/update_user.js';
 import ShowAvailability from './show_product_availability.js';
->>>>>>> c90d1327ac28b4af37567c4b6039b6a4bbc27582
 
 function Master() {
   return (
@@ -86,19 +82,15 @@ function Master() {
 
             <Route path="/admin/stocks" element={<ShowStock />} />
             <Route path="/admin/stock_management" element={<ShowStockManage />} />
-<<<<<<< HEAD
+
             <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
             <Route path="/admin/users" element={<ShowUsers />} />
-=======
-
             <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
 
             <Route path="/admin/users" element={<ShowUsers />} />
             <Route path="/admin/update_user/:userId/" element={<UpdateUser />} />
 
             <Route path="/admin/availability" element={<ShowAvailability />} />
->>>>>>> c90d1327ac28b4af37567c4b6039b6a4bbc27582
-
           {/* <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>
           </div>
