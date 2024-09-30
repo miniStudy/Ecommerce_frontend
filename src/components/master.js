@@ -84,12 +84,13 @@ function Master() {
             <Route path="/admin/stock_management" element={<ShowStockManage />} />
 
             <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
+            <Route path="/admin/users" element={<ShowUsers />} />
+            <Route path="/admin/delivery_boys" element={<ShowDeleveryBoy />} />
 
             <Route path="/admin/users" element={<ShowUsers />} />
             <Route path="/admin/update_user/:userId/" element={<UpdateUser />} />
 
             <Route path="/admin/availability" element={<ShowAvailability />} />
-
           {/* <Route path="/admin/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>
           </div>
