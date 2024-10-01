@@ -132,7 +132,7 @@ const ShowAdmin = () => {
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Role</th>
-                      {/* <th scope="col">Edit</th> */}
+                      <th scope="col">Edit</th>
                       <th scope="col">Delete</th>
                     </tr>
                   </thead>
@@ -149,11 +149,11 @@ const ShowAdmin = () => {
                           <td>{admin.admin_email}</td>
                           <td>{admin.admin_phone}</td>
                           <td>{admin.admin_role}</td>
-                          {/* <td>
-                            <Link to={`/admin/update_admin/${admin.customer_id}`} className="btn btn-sm">
+                          <td>
+                            <Link to={`/admin/update_admin/${admin.admin_id}`} className="btn btn-sm">
                               <i className="fa-regular fa-pen-to-square text-primary"></i>
                             </Link>
-                          </td> */}
+                          </td>
                           <td>
                             <div onClick={() => handleDeleteClick(admin.admin_id)} className="btn btn-sm">
                               <i className="fa-regular fa-trash text-danger"></i>

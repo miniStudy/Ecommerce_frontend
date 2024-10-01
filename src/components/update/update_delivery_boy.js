@@ -4,52 +4,50 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-const UpdateAdmin = () => {
-  const { adminId } = useParams();  // Get the adminId from the URL
-  const [adminData, setAdminData] = useState({
-    admin_fname: '',
-    admin_lname: '',
-    admin_email: '',
-    admin_phone: '',
-    admin_role: '',
+const UpdateDeliveryBoy = () => {
+  const { dbId } = useParams();  // Get the dbId from the URL
+  const [DeliveryBoyData, setDeliveryBoyData] = useState({
+    db_name: '',
+    db_email: '',
+    db_phone: '',
+    db_address: '',
   });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');  // State for success message
 
-  // Fetch admin data when the component mounts
+  // Fetch customer data when the component mounts
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/admin_update_account/?pk=${adminId}`)
+      .get(`http://127.0.0.1:8000/api/update_customer/?pk=${dbId}`)
       .then((response) => {
         // Access the nested object inside the response
         const data = response.data.Instance || response.data;  // Access 'Instance' key if it exists
 
         console.log('Response data:', data);  // Log the correct object to ensure you’re accessing the right part
 
-        setAdminData({
-            admin_fname: data.admin_fname,
-            admin_lname: data.admin_lname,
-            admin_email: data.admin_email,
-            admin_phone: data.admin_phone,
-            admin_role: data.admin_role,
+        setDeliveryBoyData({
+            db_name: data.db_name,
+            db_email: data.db_email,
+            db_phone: data.db_phone,
+            db_address: data.db_address,
         });
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching admin data:', error);  // Log any errors
-        setError('Failed to fetch admin data');
+        console.error('Error fetching customer data:', error);  // Log any errors
+        setError('Failed to fetch customer data');
         setLoading(false);
       });
-  }, [adminId]);  // Runs when adminId changes
+  }, [dbId]);  // Runs when dbId changes
 
   
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAdminData({
-      ...adminData,
+    setDeliveryBoyData({
+      ...DeliveryBoyData,
       [name]: value,  // Dynamically update the state based on input name
     });
   };
@@ -58,16 +56,16 @@ const UpdateAdmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();  // Prevent default form submission behavior
     setSuccessMessage('');
-    // Send a PUT request to update the admin data
-    axios.put(`http://127.0.0.1:8000/api/admin_update_account/?pk=${adminId}`, adminData)
+    // Send a PUT request to update the customer data
+    axios.put(`http://127.0.0.1:8000/api/update_customer/?pk=${dbId}`, DeliveryBoyData)
       .then((response) => {
-        console.log('Admin updated successfully:', response.data);
+        console.log('Customer updated successfully:', response.data);
         if (response.data.status) {
           setSuccessMessage(response.data.message);  // Set the success message
         }
       })
       .catch((error) => {
-        console.error('Error updating Admin:', error);
+        console.error('Error updating customer:', error);
       });
   };
 
@@ -95,19 +93,27 @@ const UpdateAdmin = () => {
 
    <main id="main" className="main">
     <div className="pagetitle">
-      <h1>Update Admin</h1>
-    </div>
-    {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
+      <h1>Update Delivery Boy</h1>
+      <nav>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <a href="index.html">Home</a>
+          </li>
+          <li className="breadcrumb-item active">DB</li>
+        </ol>
+      </nav>
+      {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
+
       <section>
-      <div className="card mt-3">
+      <div className="card">
             <div className="card-body">
       <form onSubmit={handleSubmit}>
   <div className="mb-3">
-    <label className="form-label">First Name:</label>
+    <label className="form-label">Name:</label>
     <input
       type="text"
-      name="admin_fname"
-      value={adminData.admin_fname}
+      name="customer_fname"
+      value={DeliveryBoyData.db_name}
       onChange={handleChange}
       className="form-control"
       placeholder="Enter first name"
@@ -115,11 +121,11 @@ const UpdateAdmin = () => {
   </div>
 
   <div className="mb-3">
-    <label className="form-label">Last Name:</label>
+    <label className="form-label">Email:</label>
     <input
       type="text"
-      name="admin_lname"
-      value={adminData.admin_lname}
+      name="customer_lname"
+      value={DeliveryBoyData.db_email}
       onChange={handleChange}
       className="form-control"
       placeholder="Enter last name"
@@ -127,23 +133,11 @@ const UpdateAdmin = () => {
   </div>
 
   <div className="mb-3">
-    <label className="form-label">Email:</label>
-    <input
-      type="email"
-      name="admin_email"
-      value={adminData.admin_email}
-      onChange={handleChange}
-      className="form-control"
-      placeholder="Enter email"
-    />
-  </div>
-
-  <div className="mb-3">
     <label className="form-label">Phone:</label>
     <input
-      type="number"
-      name="admin_phone"
-      value={adminData.admin_phone}
+      type="email"
+      name="customer_email"
+      value={DeliveryBoyData.db_phone}
       onChange={handleChange}
       className="form-control"
       placeholder="Enter email"
@@ -151,29 +145,30 @@ const UpdateAdmin = () => {
   </div>
 
   <div className="mb-3">
-    <label className="form-label">Role:</label>
+    <label className="form-label">Address:</label>
     <input
-      type="text"
-      name="admin_role"
-      value={adminData.admin_role}
+      type="email"
+      name="customer_email"
+      value={DeliveryBoyData.db_address}
       onChange={handleChange}
       className="form-control"
-      placeholder="Enter Role"
+      placeholder="Enter email"
     />
   </div>
 
   <button type="submit" className="btn btn-primary">Update</button>
-  <Link to={`/admin/show_admin/`} className='btn btn-primary ms-2'>View Admins</Link>
+  <Link to={`/admin/customer/`} className='btn btn-primary ms-2'>View Delivery Boys</Link>
   {/* Display success message if available */}
 </form>
 
     </div>
     </div>
       </section>
+    </div>
     </main>
 
     </>
   );
 };
 
-export default UpdateAdmin;
+export default UpdateDeliveryBoy;
