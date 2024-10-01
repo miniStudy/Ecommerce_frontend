@@ -62,7 +62,6 @@ const AddCustomer = () => {
       <h1>Add Customers</h1>
     </div>
       {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
-    </div>
 
   <section>
   <div className='card mt-3'>
@@ -122,13 +121,7 @@ const AddCustomer = () => {
   </div>
   </div>
 </section>
-<<<<<<< HEAD
-
-  
-    </main>
-=======
 </main>
->>>>>>> df2ceef57a09a263a30f274bb1ac29096405823b
     </>
   );
 };
