@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import ExportButtons from './export_data';
 
-const Show_Brands = () => {
+const CustomerCart = () => {
   const [data, setdata] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -194,4 +194,4 @@ const Show_Brands = () => {
       )
 }
 
-export default Show_Brands
+export default CustomerCart
