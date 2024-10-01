@@ -204,7 +204,6 @@ i {
 
 
 
-
 /* Width of the scrollbar */
 ::-webkit-scrollbar {
     width: 12px; /* Adjust the width */
@@ -247,3 +246,10 @@ i {
 
 .filtersforproducts{font-size: 14px;}
 
+
+.adminshopimgbox{
+    height: 300px;
+    background-color: var(--gray200);
+}
+
+.product_name{height: 46px;}

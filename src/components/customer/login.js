@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import the js-cookie library
 
 function Login() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     user_email: '',
     user_password: '',
@@ -32,21 +34,23 @@ function Login() {
     axios.post('http://127.0.0.1:8000/customer/customer_login/', data)
       .then((response) => {
         if (response.data.status) {
+          console.log(response.data)
           // Store session information based on Remember Me checkbox
           if (rememberMe) {
             // Store in cookies if Remember Me is checked
             Cookies.set('customer_id', response.data.customer_id, { expires: 7 }); // Cookie expires in 7 days
             Cookies.set('customer_fname', response.data.customer_fname, { expires: 7 });
             Cookies.set('customer_logged_in', 'yes', { expires: 7 });
-          } else {
-            // Store in local storage if Remember Me is not checked
-            localStorage.setItem('customer_id', response.data.customer_id);
-            localStorage.setItem('customer_fname', response.data.customer_fname);
-            localStorage.setItem('customer_logged_in', 'yes');
           }
+          // Store in local storage if Remember Me is not checked
+          sessionStorage.setItem('customer_id', response.data.customer_id);
+          sessionStorage.setItem('customer_fname', response.data.customer_fname);
+          sessionStorage.setItem('customer_logged_in', 'yes');
+          
 
           setSuccessMessage('Login successful!');
           setLoading(false);
+          navigate(`/customer/home`)
           // Redirect to a different page if needed (e.g., dashboard)
           // window.location.href = '/dashboard'; // Uncomment to redirect
         }

@@ -58,10 +58,10 @@ const AddCustomer = () => {
   return (
     <>
      <main id="main" className="main">
-    <div className="pagetitle">
+    <div className="pagetitle mb-3">
       <h1>Add Customers</h1>
-      {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
     </div>
+      {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
 
   <section>
   <div className='card mt-3'>
