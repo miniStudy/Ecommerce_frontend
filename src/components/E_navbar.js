@@ -161,13 +161,13 @@ function E_navbar() {
   </Link>
 
   <hr/>
-  <div className='text-small text-gray-400 rounded-sm'>Users</div>
-  <Link to="/admin/users">
-    <li className={isActive('/admin/users')}><i className="fa-regular fa-user me-2"></i> Users</li>
+  <div className='text-small text-gray-400 rounded-sm'>Customers</div>
+  <Link to="/admin/customer">
+    <li className={isActive('/admin/customer')}><i className="fa-regular fa-user me-2"></i> Customers</li>
   </Link>
 
-  <Link to="/admin/delivery_boys">
-    <li className={isActive('/admin/delivery_boys')}><i class="fa-solid fa-user-tie me-2"></i> Admin</li>
+  <Link to="/admin/show_admin">
+    <li className={isActive('/admin/show_admin')}><i class="fa-solid fa-user-tie me-2"></i> Admin</li>
   </Link>
 
   <Link to="/admin/delivery_boys">

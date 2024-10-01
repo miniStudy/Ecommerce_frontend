@@ -40,6 +40,7 @@ const UpdateCustomer = () => {
       });
   }, [customerId]);  // Runs when customerId changes
 
+  
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -142,9 +143,7 @@ const UpdateCustomer = () => {
   </div>
 
   <button type="submit" className="btn btn-primary">Update</button>
-  <Link to={`/admin/show_customer/`} className='btn btn-primary ms-2'>View Customers</Link>
-
-
+  <Link to={`/admin/customer/`} className='btn btn-primary ms-2'>View Customers</Link>
   {/* Display success message if available */}
 </form>
 
