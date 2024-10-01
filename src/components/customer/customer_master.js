@@ -4,6 +4,7 @@ import Register from './register';
 import Login from './login';
 import CustomerLayout from './customer_layout';
 import CustomerHome from './customer_home';
+import CustomerCart from './customer_cart';
 
 function Customer_Master() {
   return (
@@ -13,6 +14,7 @@ function Customer_Master() {
       <Route path="/login" element={<CustomerLayout><Login /></CustomerLayout>} />
       <Route path="/home" element={<CustomerLayout><CustomerHome /></CustomerLayout>} />
       <Route path="/" element={<CustomerLayout><CustomerHome /></CustomerLayout>} />
+      <Route path="/cart" element={<CustomerLayout><CustomerCart /></CustomerLayout>} />
     </Routes>
   );
 }
