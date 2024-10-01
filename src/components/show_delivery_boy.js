@@ -22,7 +22,6 @@ const ShowDeleveryBoy = () => {
         if (search) {
             apiUrl += `&searchhere=${search}`;
         }
-        alert('Hello')
         setLoading(true);
         axios
             .get(apiUrl)
