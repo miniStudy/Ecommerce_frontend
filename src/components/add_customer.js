@@ -58,16 +58,9 @@ const AddCustomer = () => {
   return (
     <>
      <main id="main" className="main">
-    <div className="pagetitle">
+    <div className="pagetitle mb-3">
       <h1>Add Customers</h1>
-      <nav>
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <a href="index.html">Home</a>
-          </li>
-          <li className="breadcrumb-item active">Customers</li>
-        </ol>
-      </nav>
+    </div>
       {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
 
       <section>
@@ -129,7 +122,7 @@ const AddCustomer = () => {
   </div>
 </section>
 
-    </div>
+  
     </main>
     </>
   );

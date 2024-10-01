@@ -122,7 +122,7 @@ const abc = '';
 
             <section className='mb-3'>
             {orders.map((order) => (
-              <div className='grid grid-cols-1 md:grid-cols-4 gap-3 p-2 mb-4 card'>
+              <div className='grid grid-cols-1 md:grid-cols-4 gap-3 p-2 mb-4 card text-sm'>
 
                 <div className='md:col-span-1 p-2'>
                   Order Code : {order.order_code}<br/>
@@ -145,7 +145,7 @@ const abc = '';
                               </Link>
                 </div>
 
-                <div className='col-span-2 p-2'>
+                <div className='md:col-span-2 p-2'>
                   <div className='table-responsive'>
                     <table className='table table-bordered'>
                       <thead>

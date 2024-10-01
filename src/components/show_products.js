@@ -159,6 +159,13 @@ const ShowProducts = () => {
     setHasMore(true); // Enable infinite scroll for new search
   };
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
   return (
     <>
       <main id="main" className="main">
@@ -441,7 +448,7 @@ const ShowProducts = () => {
                               </div>
                               <div className="">
                                 <div className="product_name mt-2">
-                                  <b>{x.product_name}</b>
+                                  <b>{truncateText(x.product_name, 50)}</b>
                                 </div>
                                 <div className="mt-2">
                                   <div className="row">
@@ -468,35 +475,37 @@ const ShowProducts = () => {
                                     <i className="fa-light fa-indian-rupee-sign text-center"></i>
                                     {x.product_mrp}
                                   </del>
+                                  <i class="fa-solid fa-tags ms-2 text-green-600 text-xl"></i>
                                 </div>
                                 <div className="product_stock mt-2">
-                                  <b>Stock</b> : {x.product_stock}
+                                  <b>Stock</b> : {x.product_stock}  
                                 </div>
                                 {x.inoffer && (
-                                  <div className="product_inoffer mt-2">
-                                    {/* <b>Offer</b> : {x.inoffer} */}
+                                  <></>
+                                  // <div className="product_inoffer mt-2">
+                                  //   {/* <b>Offer</b> : {x.inoffer} */}
     
-                                    <span className="mt-2">
-                                      <b>Selling Price after Offer : </b><i className="fa-light fa-indian-rupee-sign text-center"></i>{x.price_after_offer}
+                                  //   <span className="mt-2 text-xs">
+                                  //     <b>Selling Price after Offer : </b><i className="fa-light fa-indian-rupee-sign text-center"></i>{x.price_after_offer}
                                       
-                                      {x.product_offer_selling_price}
-                                    </span>
-                                  </div>
+                                  //     {x.product_offer_selling_price}
+                                  //   </span>
+                                  // </div>
                                 )}
                               </div>
                             </div>
                           </div>
                           <div className="card-footer d-flex flex-between align-items-center">
-                            <span className="btn-group">
+                            <span className="btn-group mx-auto">
                               <Link to={`/admin/view_product/${x.product_id}`}>
                                 <span className="btn btn-sm btn-outline-primary">
-                                  <i className="fa-solid fa-eye me-2"></i> View
+                                  <i className="fa-solid fa-eye me-2"></i>
                                 </span>
                               </Link>
                               <Link to={`/admin/edit_product/${x.product_id}`}>
                                 <span className="btn btn-sm btn-outline-primary">
                                   <i className="fa-light fa-pen-to-square me-2"></i>{" "}
-                                  Edit
+                                  
                                 </span>
                               </Link>
                               <span
@@ -504,13 +513,12 @@ const ShowProducts = () => {
                                 onClick={() => handleDeleteClick(x.product_id)}
                               >
                                 <i className="fa-light fa-trash me-2"></i>{" "}
-                                Delete
                               </span>
                               <span
                                 className="btn btn-sm btn-outline-primary"
                                 onClick={() => openOfferModel(x.product_id)}
                               >
-                                <i class="fa-solid fa-tags"></i> Add In Offer
+                                <i class="fa-solid fa-tags"></i>
                               </span>
                             </span>
                           </div>
