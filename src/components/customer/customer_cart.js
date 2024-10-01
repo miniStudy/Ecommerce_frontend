@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-import ExportButtons from './export_data';
 
 const CustomerCart = () => {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -16,9 +15,13 @@ const CustomerCart = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  // Fetch data data from the API based on the search term and page number
+  // Assuming customer_id is stored somewhere, e.g., localStorage or a context
+  const customerId = sessionStorage.getItem('customer_id'); // Adjust as needed
+
+
+  // Fetch data from the API based on search term, customer_id, and page number
   const fetchdata = (search = '', pageNumber = 1) => {
-    let apiUrl = `http://127.0.0.1:8000/api/show_brand/?page=${pageNumber}`;
+    let apiUrl = `http://127.0.0.1:8000/customer/customer_view_cart/?customer_id=${customerId}&page=${pageNumber}`;
     if (search) {
       apiUrl += `&searchhere=${search}`;
     }
@@ -28,18 +31,16 @@ const CustomerCart = () => {
       .then((response) => {
         console.log(response.data);
         const newdata = response.data.data;
-  
-        // Ensure no duplicate data based on brand_id
-        setdata((prevdata) => {
-          const existingIds = new Set(prevdata.map(item => item.brand_id));
-          const filteredData = newdata.filter(item => !existingIds.has(item.brand_id));
-          return [...prevdata, ...filteredData]; // Append only new items
+
+        setData((prevData) => {
+          const existingIds = new Set(prevData.map(item => item.cart_id));
+          const filteredData = newdata.filter(item => !existingIds.has(item.cart_id));
+          return [...prevData, ...filteredData]; // Append only new items
         });
-  
-        setTotalPages(response.data.total_pages); // Set the total number of pages
+
+        setTotalPages(response.data.total_pages);
         setLoading(false);
-  
-        // Stop loading more data if the last page is reached
+
         if (pageNumber >= response.data.total_pages) {
           setHasMore(false);
         }
@@ -49,7 +50,6 @@ const CustomerCart = () => {
         setLoading(false);
       });
   };
-  
 
   useEffect(() => {
     fetchdata(searchTerm, page); // Fetch data when the page or search term changes
@@ -59,7 +59,7 @@ const CustomerCart = () => {
     // Infinite scrolling logic
     const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && hasMore && !loading) {
-        setPage((prevPage) => prevPage + 1); // Load the next page
+        setPage((prevPage) => prevPage + 1);
       }
     };
     window.addEventListener('scroll', handleScroll);
@@ -73,12 +73,12 @@ const CustomerCart = () => {
 
   const handleDeleteConfirm = () => {
     axios
-      .delete(`http://127.0.0.1:8000/api/delete_brand/?pk=${deletedataId}`)
+      .delete(`http://127.0.0.1:8000/customer/customer_delete_cart/?pk=${deletedataId}`)
       .then((response) => {
         setSuccessMessage(response.data.message);
         setShowModal(false);
         setDeletedataId(null);
-        setdata([]); // Clear existing data before re-fetching
+        setData([]); // Clear existing data before re-fetching
         setPage(1); // Reset page to 1
         fetchdata(searchTerm, 1); // Reload data after successful deletion
       })
@@ -95,73 +95,54 @@ const CustomerCart = () => {
   const handleSearchChange = (e) => {
     const searchValue = e.target.value;
     setSearchTerm(searchValue);
-    setdata([]); // Clear previous results before fetching new ones
+    setData([]); // Clear previous results before fetching new ones
     setPage(1); // Reset to the first page for new search
     setHasMore(true); // Enable infinite scroll for new search
   };
 
-    return (
-        <>
-        <main id="main" className="main">
-          <h1 className='pagetitle'>Brands</h1>
-            {successMessage && (
-              <div className="alert alert-success alert-dismissible fade show" role="alert">
-                {successMessage}
-                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            )}
-          <br/>
-
+  return (
+    <>
+      <main id="main" className="main">
+        <h1 className="pagetitle">Customer Cart</h1>
+        {successMessage && (
+          <div className="alert alert-success alert-dismissible fade show" role="alert">
+            {successMessage}
+            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        )}
+        <br />
         <section>
           <div className="card">
             <div className="card-body">
-              <div className='row d-flex flex-between'>
-                <div className='col'>
-                  <Link to={`/admin/add_brand`}>
-                    <span className='btn btn-sm btn-outline-primary'>
-                      <i className="fa-light fa-plus me-2"></i> Add brand
-                    </span>
-                  </Link>
-                </div>
-                <div className='col d-flex justify-content-end'>
-                  <div className='d-inline-block ms-2'>
-                    <input
-                      type='text'
-                      name='searchhere'
-                      id='searchhere'
-                      className='form-control'
-                      placeholder='Search'
-                      value={searchTerm}
-                      onChange={handleSearchChange}
-                    />
-                  </div>
-                </div>
-              </div>
-              <ExportButtons data={data} />
-
               <div className="table-responsive mt-3">
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Edit</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Size</th>
+                      {/* <th scope="col">Edit</th> */}
                       <th scope="col">Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((data) => (
-                      <tr key={data.brand_id}>
-                        <th scope="row">{data.brand_id}</th>
-                        <td>{data.brand_name}</td>
-                        <td>
-                          <Link to={`/admin/update_brand/${data.brand_id}`} className="btn btn-sm">
-                          <i class="fa-regular fa-pen-to-square text-primary"></i>
+                    {data.map((item) => (
+                      <tr key={item.cart_id}>
+                        <th scope="row">{item.cart_id}</th>
+                        <td>{item.cart_product_id__product_name}</td>
+                        <td>{item.cart_quantity}</td>
+                        <td>{item.cart_price}</td>
+                        <td>{item.cart_size__size_size}</td>
+                        {/* <td>
+                          <Link to={`/admin/update_brand/${item.cart_product_id__product_brand__brand_id}`} className="btn btn-sm">
+                            <i className="fa-regular fa-pen-to-square text-primary"></i>
                           </Link>
-                        </td>
+                        </td> */}
                         <td>
-                          <div onClick={() => handleDeleteClick(data.brand_id)} className="btn btn-sm">
-                          <i class="fa-regular fa-trash text-danger"></i>
+                          <div onClick={() => handleDeleteClick(item.cart_id)} className="btn btn-sm">
+                            <i className="fa-regular fa-trash text-danger"></i>
                           </div>
                         </td>
                       </tr>
@@ -188,10 +169,9 @@ const CustomerCart = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </main>
+    </>
+  );
+};
 
-          </main>
-          </>
-      )
-}
-
-export default CustomerCart
+export default CustomerCart;
