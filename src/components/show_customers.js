@@ -28,7 +28,12 @@ const ShowCustomer = () => {
       .then((response) => {
         console.log(response.data)
         const newCustomers = response.data.data;
-        setCustomers((prevCustomers) => [...prevCustomers, ...newCustomers]); // Append new data
+        // Ensure no duplicate data based on brand_id
+        setCustomers((prevdata) => {
+          const existingIds = new Set(prevdata.map(item => item.customer_id));
+          const filteredData = newCustomers.filter(item => !existingIds.has(item.customer_id));
+          return [...prevdata, ...filteredData]; // Append only new items
+        });
         setTotalPages(response.data.total_pages); // Set the total number of pages
         setLoading(false);
 
@@ -97,14 +102,6 @@ const ShowCustomer = () => {
       <main id="main" className="main">
         <div className="pagetitle">
           <h1>Customers</h1>
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active">Customers</li>
-            </ol>
-          </nav>
         </div>
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
@@ -114,7 +111,7 @@ const ShowCustomer = () => {
         )}
 
         <section>
-          <div className="card">
+          <div className="card mt-3">
             <div className="card-body">
               <div className='row d-flex flex-between'>
                 <div className='col'>
@@ -124,14 +121,14 @@ const ShowCustomer = () => {
                     </span>
                   </Link>
                 </div>
-                <div className='col'>
-                  <div className='d-inline-block ms-2'>
+                 <div className="col d-flex justify-content-end">
+                  <div className="d-inline-block ms-2">
                     <input
-                      type='text'
-                      name='searchhere'
-                      id='searchhere'
-                      className='form-control'
-                      placeholder='Search'
+                      type="text"
+                      name="searchhere"
+                      id="searchhere"
+                      className="form-control"
+                      placeholder="Search"
                       value={searchTerm}
                       onChange={handleSearchChange}
                     />
@@ -140,8 +137,7 @@ const ShowCustomer = () => {
               </div>
               <ExportButtons data={customers} />
 
-              <hr />
-              <div className="table-responsive">
+              <div className="table-responsive mt-3">
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>
                     <tr>

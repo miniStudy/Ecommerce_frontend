@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const AddCustomer = () => {
+const AddAdmin = () => {
   // State to hold form data
-  const [customerData, setCustomerData] = useState({
-    customer_fname: '',
-    customer_lname: '',
-    customer_email: '',
-    customer_password: '',
+    const [data, setdata] = useState({
+    admin_fname: '',
+    admin_lname: '',
+    admin_email: '',
+    admin_password: '',
+    admin_phone: '',
+    admin_role: '',
+    admin_profile_image: '',
   });
 
   const [loading, setLoading] = useState(false);
@@ -18,8 +21,8 @@ const AddCustomer = () => {
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCustomerData({
-      ...customerData,
+    setdata({
+      ...data,
       [name]: value,  // Dynamically update the state based on input name
     });
   };
@@ -29,7 +32,7 @@ const AddCustomer = () => {
     e.preventDefault();  // Prevent default form submission behavior
     setSuccessMessage('');
     // Send a POST request to the API
-    axios.post('http://127.0.0.1:8000/api/insert_customer/', customerData)
+    axios.post('http://127.0.0.1:8000/api/admin_create_account/', data)
       .then((response) => {
         console.log('Customer added successfully:', response.data);
         console.log(response.data.status)
@@ -57,12 +60,11 @@ const AddCustomer = () => {
 
   return (
     <>
-     <main id="main" className="main">
+    <main id="main" className="main">
     <div className="pagetitle">
-      <h1>Add Customers</h1>
+      <h1>Add Admin</h1>
       {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
     </div>
-
   <section>
   <div className='card mt-3'>
     <div className='card-body'>
@@ -71,8 +73,8 @@ const AddCustomer = () => {
         <label className="form-label">First Name:</label>
         <input
           type="text"
-          name="customer_fname"
-          value={customerData.customer_fname}
+          name="admin_fname"
+          value={data.admin_fname}
           className="form-control"
           placeholder="Enter first name"
           onChange={handleChange}
@@ -83,10 +85,34 @@ const AddCustomer = () => {
         <label className="form-label">Last Name:</label>
         <input
           type="text"
-          name="customer_lname"
-          value={customerData.customer_lname}
+          name="admin_lname"
+          value={data.admin_lname}
           className="form-control"
           placeholder="Enter last name"
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Phone:</label>
+        <input
+          type="number"
+          name="admin_phone"
+          value={data.admin_phone}
+          className="form-control"
+          placeholder="Enter contact number"
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Role:</label>
+        <input
+          type="text"
+          name="admin_role"
+          value={data.admin_role}
+          className="form-control"
+          placeholder="Enter role"
           onChange={handleChange}
         />
       </div>
@@ -95,8 +121,8 @@ const AddCustomer = () => {
         <label className="form-label">Email:</label>
         <input
           type="email"
-          name="customer_email"
-          value={customerData.customer_email}
+          name="admin_email"
+          value={data.admin_email}
           className="form-control"
           placeholder="Enter email"
           onChange={handleChange}
@@ -107,8 +133,8 @@ const AddCustomer = () => {
         <label className="form-label">Password:</label>
         <input
           type="password"
-          name="customer_password"
-          value={customerData.customer_password}
+          name="admin_password"
+          value={data.admin_password}
           className="form-control"
           placeholder="Enter password"
           onChange={handleChange}
@@ -116,14 +142,14 @@ const AddCustomer = () => {
       </div>
 
       <button type="submit" className="btn btn-primary">Submit</button>
-      <Link to={`/admin/customer/`} className='btn btn-primary ms-2'>View Customers</Link>
+      <Link to={`/admin/show_admin/`} className='btn btn-primary ms-2'>View Admin</Link>
     </form>
   </div>
   </div>
 </section>
-</main>
+    </main>
     </>
   );
 };
 
-export default AddCustomer;
+export default AddAdmin;
