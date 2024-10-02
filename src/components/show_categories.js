@@ -103,16 +103,8 @@ const Showdata = () => {
   return (
     <>
       <main id="main" className="main">
-        <div className="pagetitle">
+        <div className="pagetitle mb-3">
           <h1>Categories</h1>
-          <nav>
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active">Categories</li>
-            </ol>
-          </nav>
         </div>
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
@@ -124,32 +116,34 @@ const Showdata = () => {
         <section>
           <div className="card">
             <div className="card-body">
-              <div className='row d-flex flex-between'>
-                <div className='col'>
-                  <Link to={`/admin/add_category`}>
-                    <span className='btn btn-sm btn-outline-primary'>
-                      <i className="fa-light fa-plus me-2"></i> Add Category
-                    </span>
-                  </Link>
-                </div>
-                <div className='col'>
-                  <div className='d-inline-block ms-2'>
-                    <input
-                      type='text'
-                      name='searchhere'
-                      id='searchhere'
-                      className='form-control'
-                      placeholder='Search'
-                      value={searchTerm}
-                      onChange={handleSearchChange}
-                    />
-                  </div>
-                </div>
-              </div>
+            <div className='row d-flex flex-between'>
+                            <div className='col'>
+                            <Link to={`/admin/add_category`}>
+                                <span className='btn btn-sm btn-outline-primary'>
+                                <i className="fa-light fa-plus me-2"></i> Add Category
+                                </span>
+                            </Link>
+                            </div>
+                            <div className="col d-flex justify-content-end">
+                            <div className="d-inline-block ms-2">
+                                <input
+                                type="text"
+                                name="searchhere"
+                                id="searchhere"
+                                className="form-control"
+                                placeholder="Search"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                />
+                            </div>
+                            </div>
+                        </div>
+
+    
               <ExportButtons data={data} />
 
-              <hr />
-              <div className="table-responsive">
+             
+              <div className="table-responsive mt-3">
                 <table id="data_table1" className="table table-bordered border-primary">
                   <thead>
                     <tr>

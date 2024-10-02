@@ -104,14 +104,6 @@ const Show_Offers = () => {
         <main id="main" className="main">
             <div className="pagetitle">
                 <h1>Offers</h1>
-                <nav>
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li className="breadcrumb-item active">Offers</li>
-                    </ol>
-                </nav>
             </div>
 
             {successMessage && (
@@ -121,35 +113,35 @@ const Show_Offers = () => {
                 </div>
             )}
 
-            <section>
+            <section className='mt-3'>
                 <div className="card">
                     <div className="card-body">
                         <div className='row d-flex flex-between'>
                             <div className='col'>
-                                <Link to={`/admin/add_offer`}>
-                                    <span className='btn btn-sm btn-outline-primary'>
-                                        <i className="fa-light fa-plus me-2"></i> Add Offer
-                                    </span>
-                                </Link>
+                            <Link to={`/admin/add_offer`}>
+                                <span className='btn btn-sm btn-outline-primary'>
+                                <i className="fa-light fa-plus me-2"></i> Add Offer
+                                </span>
+                            </Link>
                             </div>
-                            <div className='col'>
-                                <div className='d-inline-block ms-2'>
-                                    <input
-                                        type='text'
-                                        name='searchhere'
-                                        id='searchhere'
-                                        className='form-control'
-                                        placeholder='Search'
-                                        value={searchTerm}
-                                        onChange={handleSearchChange}
-                                    />
-                                </div>
+                            <div className="col d-flex justify-content-end">
+                            <div className="d-inline-block ms-2">
+                                <input
+                                type="text"
+                                name="searchhere"
+                                id="searchhere"
+                                className="form-control"
+                                placeholder="Search"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                />
+                            </div>
                             </div>
                         </div>
                         <ExportButtons data={data} />
 
-                        <hr />
-                        <div className="table-responsive">
+                       
+                        <div className="table-responsive mt-3">
                             <table id="data_table1" className="table table-bordered border-primary">
                                 <thead>
                                     <tr>

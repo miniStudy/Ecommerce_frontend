@@ -63,8 +63,9 @@ const AddAdmin = () => {
     <main id="main" className="main">
     <div className="pagetitle">
       <h1>Add Admin</h1>
-      {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
     </div>
+    {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
+
   <section>
   <div className='card mt-3'>
     <div className='card-body'>
