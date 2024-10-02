@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
+import ProductImage from './default_img';
 
 const CustomerWhishlist = () => {
     const [data, setData] = useState([]);
@@ -61,10 +62,46 @@ const CustomerWhishlist = () => {
   };
 
 
+    // Handle quantity change
+    const handleQuantityChange = (itemId, action) => {
+        const updatedData = data.map((item) => {
+          if (item.wishlist_id === itemId) {
+            const unitPrice = item.wishlist_product__product_selling_price / item.wishlist_quantity; // Calculate the original price per unit
+            
+            const newQuantity = action === 'increment' ? item.wishlist_quantity + 1 : item.wishlist_quantity - 1;
+      
+            // Ensure quantity doesn't drop below 1
+            if (newQuantity < 1) return item;
+      
+            const newPrice = unitPrice * newQuantity; // Correct price based on unit price and new quantity
+      
+            // Update backend for quantity change
+            axios.put(`http://127.0.0.1:8000/customer/customer_update_wishlist_quantity/`, {
+              wishlist_id: itemId,
+              new_quantity: newQuantity
+            }).then(() => {
+              setSuccessMessage("Quantity updated successfully.");
+            }).catch((error) => {
+              console.error("Error updating quantity", error);
+            });
+      
+            return {
+              ...item,
+              wishlist_quantity: newQuantity,
+              wishlist_product__product_selling_price: newPrice // Update the price on the frontend with correct value
+            };
+          }
+          return item;
+        });
+      
+        setData(updatedData); // Update the state with new data
+      };
+      
+
   return(
         <>
         <main id="main" className="main">
-        <h1 className="pagetitle">Customer Cart</h1>
+        <h1 className="pagetitle">Wishlist</h1>
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
@@ -94,9 +131,27 @@ const CustomerWhishlist = () => {
                     {data.map((item) => (
                       <tr key={item.wishlist_id}>
                         <th scope="row">{item.wishlist_id}</th>
-                        <td>{item.wishlist_product__product_img1}</td>
+                        <td><img 
+                          src={`http://127.0.0.1:8000/media/${item.wishlist_product__product_img1}`} alt="Wishlist Product" className="product_img" />
+                        </td>
                         <td>{item.wishlist_product__product_name}</td>
-                        <td>{item.wishlist_quantity}</td>
+                        <td>
+                            <div className="quantity-control">
+                              <button
+                                onClick={() => handleQuantityChange(item.wishlist_id, 'decrement')}
+                                className="btn btn-sm"
+                              >
+                                -
+                              </button>
+                              <span className="mx-2">{item.wishlist_quantity}</span>
+                              <button
+                                onClick={() => handleQuantityChange(item.wishlist_id, 'increment')}
+                                className="btn btn-sm"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </td>
                         <td>{item.wishlist_product__product_selling_price}</td>
                         <td>{item.wishlist_size__size_size}</td>
                         <td>{item.wishlist_color__color_color}</td>
