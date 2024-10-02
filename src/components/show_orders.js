@@ -16,6 +16,9 @@ const ShowOrder = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [hasMore, setHasMore] = useState(true);
+    const [selectedOrderDetail, setSelectedOrderDetail] = useState(null); // For storing selected order detail
+    const [deliveryBoys, setDeliveryBoys] = useState([]); // Store delivery boys
+    const [selectedDeliveryBoy, setSelectedDeliveryBoy] = useState(null); // Store selected delivery boy
 
 const abc = '';
       // Fetch customer data from the API based on the search term and page number
@@ -35,11 +38,12 @@ const abc = '';
                 const filteredOrders = newOrders.filter(item => !existingIds.has(item.order_id));
                 return [...prevOrders, ...filteredOrders];
               });
-            setTotalPages(response.data.total_pages); // Set the total number of pages
+              setDeliveryBoys(response.data.delivery_boys);
+            setTotalPages(response.data.total_Pages); // Set the total number of pages
             setLoading(false);
 
             // Stop loading more data if the last page is reached
-            if (pageNumber >= response.data.total_pages) {
+            if (pageNumber >= response.data.total_Pages) {
             setHasMore(false);
             }
         })
@@ -108,6 +112,40 @@ const abc = '';
     };
 
 
+    const handleAssignOrderClick = (orderDetail) => {
+      setSelectedOrderDetail(orderDetail); // Set the selected order detail
+      setShowModal(true); // Open the modal
+  };
+
+  const handleAssignSubmit = () => {
+      if (selectedDeliveryBoy && selectedOrderDetail) {
+          
+          alert(`Assigned Delivery Boy: ${selectedDeliveryBoy.db_name} \nOrder Detail ID: ${selectedOrderDetail.orderdet_id}`);
+          setSuccessMessage('');
+              
+              axios.get(`http://127.0.0.1:8000/api/order_assign/?orderDet_id=${selectedOrderDetail.orderdet_id}&db_id=${selectedDeliveryBoy.db_id}`)
+                .then((response) => {
+                  console.log('Order has been Assigned', response.data);
+                  console.log(response.data.status)
+                  
+                  setSuccessMessage(response.data.message);
+                  setOrders([]);
+                  fetchOrders(searchTerm, 1);
+                  
+                })
+                .catch((error) => {
+                  console.error('Error Assign Order:', error);
+                  setError('Failed to Assign Order');
+                
+                });
+          // Close modal
+          setShowModal(false);
+      } else {
+          alert("Please select a delivery boy.");
+      }
+  };
+
+
     return (
         <>
           <main id="main" className="main">
@@ -142,7 +180,7 @@ const abc = '';
                   Delivery Date : {order.order_delivered_date}<br/>
                   Order Detail : <Link to={`/admin/Order_Details/${order.order_id}`}>
                                 <span className='text-blue-500 underline'> View</span>
-                              </Link>
+                              </Link><br/>         
                 </div>
 
                 <div className='md:col-span-2 p-2'>
@@ -153,6 +191,7 @@ const abc = '';
                           <th scope="col">Product Name</th>
                           <th scope="col">Qty</th>
                           <th scope="col" className="text-center">Status</th>
+                          <th scope='col'>Delivery boy</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -178,6 +217,7 @@ const abc = '';
                           <span>{product.product_status}</span>  // Display status if not pending
                         )}
                         </td>
+                        <td>{product.delivery_boy && product.delivery_boy.length > 0 ? (<>{product.delivery_boy[0].assign_db_name}</>) : (<><button className="btn btn-primary" onClick={() => handleAssignOrderClick(product)}>Assign Order</button></>)}</td>
                         </tr>
                         ))}
                       </tbody>
@@ -186,8 +226,46 @@ const abc = '';
                   </div>
                 </div>
               </div>
+
+
             ))}
             </section>
+            {loading && (
+                <div className="d-flex justify-content-center">
+                  <div
+                    class="spinner-border text-blue-300 mt-2"
+                    role="status"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              )}
+
+            {/* Modal for Assigning Delivery Boy */}
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Assign Delivery Boy</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="form-group">
+                            <label>Select Delivery Boy</label>
+                            <select
+                                className="form-control"
+                                onChange={(e) => setSelectedDeliveryBoy(deliveryBoys.find(boy => boy.db_id === parseInt(e.target.value)))}
+                                value={selectedDeliveryBoy ? selectedDeliveryBoy.db_id : ''}
+                            >
+                                <option value="">Select</option>
+                                {deliveryBoys.map((boy) => (
+                                    <option key={boy.db_id} value={boy.db_id}>{boy.db_name}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                        <Button variant="primary" onClick={handleAssignSubmit}>Assign Delivery Boy</Button>
+                    </Modal.Footer>
+                </Modal>
           </main>
         </>
       );

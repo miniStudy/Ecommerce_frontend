@@ -124,11 +124,15 @@ function E_navbar() {
     <li className={isActive('/admin/home')}><i className="fa-solid fa-house me-2"></i> Home</li>
   </Link>
 
-  <Link to="/admin/show_products/">
-    <li className={isActive('/admin/show_products/')}><i className="fa-solid fa-cubes me-2"></i> Products</li>
+  <Link to="/admin/show_category">
+    <li className={isActive('/admin/show_category')}><i className="fa-regular fa-building me-2"></i> Categories</li>
   </Link>
 
-  
+  <Link to="/admin/">
+    <li className={isActive('/admin/')}><i className="fa-regular fa-building me-2"></i> Subcategories</li>
+  </Link>
+
+
   <Link to="/admin/brands">
     <li className={isActive('/admin/brands')}><i className="fa-regular fa-building me-2"></i> Brands</li>
   </Link>
@@ -141,12 +145,14 @@ function E_navbar() {
     <li className={isActive('/admin/colors')}><i className="fa-solid fa-palette me-2"></i> Colors</li>
   </Link>
 
-  
 
-  <Link to="/admin/Orders">
-    <li className={isActive('/admin/Orders')}><i className="fa-solid fa-truck-fast me-2"></i> Orders</li>
+  <Link to="/admin/offers">
+    <li className={isActive('/admin/offers')}><i class="fa-solid fa-tag me-2"></i> Offers</li>
   </Link>
-  
+
+  <hr/>
+  <div className='text-small text-gray-400 rounded-sm mb-2'>Products & Management</div>
+
   <Link to="/admin/Stocks">
     <li className={isActive('/admin/Stocks')}><i className="fa-solid fa-layer-group me-2"></i> Stocks Entries</li>
   </Link>
@@ -155,14 +161,23 @@ function E_navbar() {
     <li className={isActive('/admin/stock_management')}><i className="fa-solid fa-cubes-stacked me-2"></i> Stock Managements</li>
   </Link>
 
-  
-
   <Link to="/admin/availability">
     <li className={isActive('/admin/availability')}><i class="fa-regular fa-square-check me-2"></i> Products Availablity</li>
   </Link>
+  
+  <Link to="/admin/show_products/">
+    <li className={isActive('/admin/show_products/')}><i className="fa-solid fa-cubes me-2"></i> Products</li>
+  </Link>
 
+  <Link to="/admin/Orders">
+    <li className={isActive('/admin/Orders')}><i className="fa-solid fa-truck-fast me-2"></i> Orders</li>
+  </Link>
+  
+  
   <hr/>
-  <div className='text-small text-gray-400 rounded-sm'>Customers</div>
+  <div className='text-small text-gray-400 rounded-sm mb-2'>Users</div>
+
+  
   <Link to="/admin/customer">
     <li className={isActive('/admin/customer')}><i className="fa-regular fa-user me-2"></i> Customers</li>
   </Link>
@@ -176,7 +191,7 @@ function E_navbar() {
   </Link>
 
  <hr/>
- <div className='text-small text-gray-400 rounded-sm'>Authentication</div>
+ <div className='text-small text-gray-400 rounded-sm mb-2'>Authentication</div>
  <Link to="/admin/delivery_boys">
     <li className={isActive('/admin/delivery_boys')}><i className="fa-solid fa-truck me-2"></i>Change Password</li>
   </Link>
