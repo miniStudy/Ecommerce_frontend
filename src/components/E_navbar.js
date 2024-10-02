@@ -76,10 +76,11 @@ function E_navbar() {
                 <hr className="border-2 my-2" />
                 {/* Menu Items */}
                 <ul className='navbarprofilemenu'>
-                  <li>
+                  <li> <Link to={`/admin/admin_profile/`}>
                     <a className="dropdown-item flex items-center p-2" href="#">
                       <i className="fa-regular fa-user mr-2" /> Profile
                     </a>
+                    </Link>
                   </li>
                   <li>
                     <a className="dropdown-item flex items-center p-2" href="#">

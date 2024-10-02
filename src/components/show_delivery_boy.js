@@ -18,7 +18,7 @@ const ShowDeleveryBoy = () => {
 
     // Fetch data from the API based on the search term and page number
     const fetchData = (search = '', pageNumber = 1) => {
-        let apiUrl = `http://127.0.0.1:8000/delivery/db_show/?page=${pageNumber}`;
+        let apiUrl = `http://127.0.0.1:8000/api/show_delivery_boy/?page=${pageNumber}`;
         if (search) {
             apiUrl += `&searchhere=${search}`;
         }
@@ -72,7 +72,7 @@ const ShowDeleveryBoy = () => {
 
     const handleDeleteConfirm = () => {
         axios
-            .delete(`http://127.0.0.1:8000/delivery/db_delete/?pk=${deletedataId}`)
+            .delete(`http://127.0.0.1:8000/api/delete_delivery_boy/?pk=${deletedataId}`)
             .then((response) => {
                 setSuccessMessage(response.data.message);
                 setShowModal(false);
@@ -114,18 +114,25 @@ const ShowDeleveryBoy = () => {
                 <div className="card">
                     <div className="card-body">
                         <div className='row d-flex flex-between'>
+                            <div className='col'>
+                            <Link to={`/admin/add_delivery_boy`}>
+                                <span className='btn btn-sm btn-outline-primary'>
+                                <i className="fa-light fa-plus me-2"></i> Add Delivery Boy
+                                </span>
+                            </Link>
+                            </div>
                             <div className='col d-flex justify-content-end'>
-                                <div className='d-inline-block ms-2'>
-                                    <input
-                                        type='text'
-                                        name='searchhere'
-                                        id='searchhere'
-                                        className='form-control'
-                                        placeholder='Search'
-                                        value={searchTerm}
-                                        onChange={handleSearchChange}
-                                    />
-                                </div>
+                            <div className='d-inline-block ms-2'>
+                                <input
+                                type='text'
+                                name='searchhere'
+                                id='searchhere'
+                                className='form-control'
+                                placeholder='Search'
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                />
+                            </div>
                             </div>
                         </div>
                         <ExportButtons data={data} />
@@ -139,6 +146,7 @@ const ShowDeleveryBoy = () => {
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone</th>
                                         <th scope="col">Address</th>
+                                        <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
@@ -149,7 +157,12 @@ const ShowDeleveryBoy = () => {
                                             <td>{db.db_name}</td>
                                             <td>{db.db_email}</td>
                                             <td>{db.db_phone}</td>
-                                            <td>{db.db_address}</td>                                       
+                                            <td>{db.db_address}</td>  
+                                            <td>
+                                                <Link to={`/admin/update_delivery_boy/${db.db_id}`} className="btn btn-sm">
+                                                <i class="fa-regular fa-pen-to-square text-primary"></i>
+                                                </Link>
+                                            </td>                                     
                                             <td>
                                                 <div onClick={() => handleDeleteClick(db.db_id)} className="btn btn-sm">
                                                     <i className="fa-regular fa-trash text-danger"></i>
