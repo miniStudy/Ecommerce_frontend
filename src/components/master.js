@@ -38,6 +38,7 @@ import ShowAvailability from './show_product_availability.js';
 import ShowAdmin from './show_admin.js';
 import AddAdmin from './add_admin.js';
 import UpdateAdmin from './update/update_admin.js';
+import DBOrders from './delivery_boy_orders.js'
 
 function Master() {
   return (
@@ -98,6 +99,10 @@ function Master() {
             <Route path="/update_admin/:adminId" element={<UpdateAdmin />} />
 
             <Route path="/availability" element={<ShowAvailability />} />
+
+
+            <Route path="/assigned_orders" element={<DBOrders />} />
+
           {/* <Route path="/offer_details/:offerId/" element={<OfferDetails />} /> */}
             </Routes>
           </div>
