@@ -5,6 +5,7 @@ import Login from './login';
 import CustomerLayout from './customer_layout';
 import CustomerHome from './customer_home';
 import CustomerCart from './customer_cart';
+import CustomerWhishlist from './customer_whishlist';
 
 function Customer_Master() {
   return (
@@ -15,6 +16,7 @@ function Customer_Master() {
       <Route path="/home" element={<CustomerLayout><CustomerHome /></CustomerLayout>} />
       <Route path="/" element={<CustomerLayout><CustomerHome /></CustomerLayout>} />
       <Route path="/cart" element={<CustomerLayout><CustomerCart /></CustomerLayout>} />
+      <Route path="/wishlist" element={<CustomerLayout><CustomerWhishlist /></CustomerLayout>} />
     </Routes>
   );
 }
