@@ -7,8 +7,9 @@ import AddCustomer from './add_customer';
 import UpdateCustomer from './update/update_customer';
 import ShowProducts from './show_products.js';
 import Home from './home';
+import AdminProfile from './admin_profile.js'
 import ProductDetails from './product_details.js';
-import AddProduct from './insert_product.js';
+import AddProduct from './insert/insert_product.js';
 import UpdateProduct from './update_products.js';
 import ShowCategory from './show_categories.js';
 import AddCategory from './insert/insert_category.js';
@@ -31,6 +32,8 @@ import OrderDetails from './show_order_details.js';
 import ShowStock from './show_stock.js';
 import ShowStockManage from './show_stock_manage.js';
 import ShowDeleveryBoy from './show_delivery_boy.js';
+import AddDeliveryBoy from './insert/insert_delivery_boy.js'
+import UpdateDeliveryBoy from './update/update_delivery_boy.js'
 import ShowAvailability from './show_product_availability.js';
 import ShowAdmin from './show_admin.js';
 import AddAdmin from './add_admin.js';
@@ -47,6 +50,8 @@ function Master() {
             <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+
+            <Route path="/admin_profile/" element={<AdminProfile />} />
       
             <Route path="/customer" element={<ShowCustomer />} />
             <Route path="/add_customer" element={<AddCustomer />} />
@@ -84,10 +89,10 @@ function Master() {
             <Route path="/stock_management" element={<ShowStockManage />} />
 
             <Route path="/delivery_boys" element={<ShowDeleveryBoy />} />
-            <Route path="/delivery_boys" element={<ShowDeleveryBoy />} />
+            <Route path="/add_delivery_boy" element={<AddDeliveryBoy />} />
+            <Route path="/update_delivery_boy/:dbId/" element={<UpdateDeliveryBoy />} />
 
-            
-
+          
             <Route path="/show_admin" element={<ShowAdmin />} />
             <Route path="/add_admin" element={<AddAdmin />} />
             <Route path="/update_admin/:adminId" element={<UpdateAdmin />} />

@@ -93,17 +93,9 @@ const ProductForm = () => {
   };
 
   return (
-    <main id="main" className="main container mt-5">
+    <main id="main" className="main container">
       <div className="pagetitle mb-4">
         <h1>Products</h1>
-        <nav>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item active">Products</li>
-          </ol>
-        </nav>
       </div>
       {successMessage && <div class="alert alert-success alert-dismissible fade show" role="alert">{successMessage}</div>}
 
