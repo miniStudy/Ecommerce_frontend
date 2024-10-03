@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 
+
 const CustomerCart = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -100,10 +101,46 @@ const CustomerCart = () => {
     setHasMore(true); // Enable infinite scroll for new search
   };
 
+  // Handle quantity change
+  const handleQuantityChange = (itemId, action) => {
+    const updatedData = data.map((item) => {
+      if (item.cart_id === itemId) {
+        const unitPrice = item.cart_product_id__product_selling_price / item.cart_quantity; // Calculate the original price per unit
+        
+        const newQuantity = action === 'increment' ? item.cart_quantity + 1 : item.cart_quantity - 1;
+  
+        // Ensure quantity doesn't drop below 1
+        if (newQuantity < 1) return item;
+  
+        const newPrice = unitPrice * newQuantity; // Correct price based on unit price and new quantity
+  
+        // Update backend for quantity change
+        axios.put(`http://127.0.0.1:8000/customer/customer_update_cart_quantity/`, {
+          cart_id: itemId,
+          new_quantity: newQuantity
+        }).then(() => {
+          setSuccessMessage("Quantity updated successfully.");
+        }).catch((error) => {
+          console.error("Error updating quantity", error);
+        });
+  
+        return {
+          ...item,
+          cart_quantity: newQuantity,
+          cart_product_id__product_selling_price: newPrice // Update the price on the frontend with correct value
+        };
+      }
+      return item;
+    });
+  
+    setData(updatedData); // Update the state with new data
+  };
+
+
   return (
     <>
       <main id="main" className="main">
-        <h1 className="pagetitle">Customer Cart</h1>
+        <h1 className="pagetitle">Cart</h1>
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
@@ -119,11 +156,13 @@ const CustomerCart = () => {
                   <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col">Product Img</th>
                       <th scope="col">Product Name</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Price</th>
                       <th scope="col">Size</th>
-                      {/* <th scope="col">Edit</th> */}
+                      <th scope="col">Color</th>
+                      <th scope="col">Brand</th>
                       <th scope="col">Delete</th>
                     </tr>
                   </thead>
@@ -131,15 +170,31 @@ const CustomerCart = () => {
                     {data.map((item) => (
                       <tr key={item.cart_id}>
                         <th scope="row">{item.cart_id}</th>
+                        <td><img 
+                          src={`http://127.0.0.1:8000/media/${item.cart_product_id__product_img1}`} alt="Product" className="product_img" />
+                        </td>
                         <td>{item.cart_product_id__product_name}</td>
-                        <td>{item.cart_quantity}</td>
-                        <td>{item.cart_price}</td>
+                        <td>
+                            <div className="quantity-control">
+                              <button
+                                onClick={() => handleQuantityChange(item.cart_id, 'decrement')}
+                                className="btn btn-sm"
+                              >
+                                -
+                              </button>
+                              <span className="mx-2">{item.cart_quantity}</span>
+                              <button
+                                onClick={() => handleQuantityChange(item.cart_id, 'increment')}
+                                className="btn btn-sm"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </td>
+                        <td>{item.cart_product_id__product_selling_price}</td>
                         <td>{item.cart_size__size_size}</td>
-                        {/* <td>
-                          <Link to={`/admin/update_brand/${item.cart_product_id__product_brand__brand_id}`} className="btn btn-sm">
-                            <i className="fa-regular fa-pen-to-square text-primary"></i>
-                          </Link>
-                        </td> */}
+                        <td>{item.cart_color__color_color}</td>
+                        <td>{item.cart_product_id__product_brand__brand_name}</td>
                         <td>
                           <div onClick={() => handleDeleteClick(item.cart_id)} className="btn btn-sm">
                             <i className="fa-regular fa-trash text-danger"></i>

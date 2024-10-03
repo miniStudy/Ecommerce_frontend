@@ -9,6 +9,8 @@ import CustomerCart from './customer_cart';
 import Home from './home';
 
 
+import CustomerWhishlist from './customer_whishlist';
+
 function Customer_Master() {
   return (
     <Routes>
@@ -22,6 +24,8 @@ function Customer_Master() {
       <Route path="/homee" element={<CustomerLayout><Home /></CustomerLayout>} />
 
 
+
+      <Route path="/wishlist" element={<CustomerLayout><CustomerWhishlist /></CustomerLayout>} />
     </Routes>
   );
 }
