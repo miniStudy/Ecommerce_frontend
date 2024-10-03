@@ -36,6 +36,8 @@ import ShowAdmin from './show_admin.js';
 import AddAdmin from './add_admin.js';
 import UpdateAdmin from './update/update_admin.js';
 
+import './tailwind.css'
+
 function Master() {
   return (
       <>
