@@ -20,9 +20,6 @@ function Customer_Master() {
       <Route path="/" element={<CustomerLayout><CustomerHome /></CustomerLayout>} />
       <Route path="/show_products" element={<CustomerLayout><ShowProducts /></CustomerLayout>} />
       <Route path="/cart" element={<CustomerLayout><CustomerCart /></CustomerLayout>} />
-
-
-
       <Route path="/wishlist" element={<CustomerLayout><CustomerWhishlist /></CustomerLayout>} />
     </Routes>
   );
