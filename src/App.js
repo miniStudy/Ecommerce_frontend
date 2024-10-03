@@ -6,7 +6,7 @@ import './ministudy_style.css';
 import './ministudy_js';
 
 import Master from './components/master.js';
-import Customer_Master from './components/CUSTOMER/customer_master.js';
+import Customer_Master from './components/customer/customer_master.js';
 import Delivery_Master from './components/DELIVERY/delivery_master.js';
 
 function App() {
